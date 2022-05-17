@@ -1,0 +1,22 @@
+C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\Bar LES UTN.exe
+C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\Bar LES UTN.deps.json
+C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\Bar LES UTN.runtimeconfig.json
+C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\Bar LES UTN.runtimeconfig.dev.json
+C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\Bar LES UTN.dll
+C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\ref\Bar LES UTN.dll
+C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\Bar LES UTN.pdb
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar LES UTN.csproj.AssemblyReference.cache
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar_LES_UTN.Bienvenidx.resources
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar_LES_UTN.Stock.resources
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar_LES_UTN.VistaPrincipal.resources
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar LES UTN.csproj.GenerateResource.cache
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar LES UTN.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar LES UTN.AssemblyInfoInputs.cache
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar LES UTN.AssemblyInfo.cs
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar LES UTN.csproj.CoreCompileInputs.cache
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar LES UTN.dll
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\ref\Bar LES UTN.dll
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar LES UTN.pdb
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar LES UTN.genruntimeconfig.cache
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar_LES_UTN.Lista_Empleados.resources
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar_LES_UTN.AbrirCuenta.resources
