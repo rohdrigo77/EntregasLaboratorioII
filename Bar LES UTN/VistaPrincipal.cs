@@ -18,29 +18,38 @@ namespace Bar_LES_UTN
         AbrirCuenta abrirCuenta;
         Dictionary<int, Button> botones;
         Dictionary<int, bool> disponibilidadMesas;
-        Bar lesUTN = new Bar();
+        Bar lesUTN;
 
         private VistaPrincipal()
         {
-
             InitializeComponent();
             botones = new Dictionary<int, Button>();
-            CargarMesas();
-
+            disponibilidadMesas = new Dictionary<int, bool>();
         }
 
-        public VistaPrincipal(Empleado empleadoActual) : this()
+        public VistaPrincipal(Empleado empleadoActual, Bar barLogueado)
+        : this()
         {
  
             empleadoLogueado = empleadoActual;
             lblNombreUsuario.Text = empleadoActual.Nombre;
+            lesUTN = barLogueado;                    
+            CargarMesas();
+            ObtenerEstadoMesas();
+            btnCobrarMesa.Enabled = false;
+
+            if (empleadoLogueado.Permisos == EPermisos.Administrador)
+            {
+                lblEmpleadoAdmin.Visible = true;
+                this.BackColor = Color.Yellow;
+            }
+            
 
         }
 
         private void VistaPrincipal_Load(object sender, EventArgs e)
         {
-            ObtenerEstadoMesas();
-            btnCobrarMesa.Enabled = false;
+
         }
 
         private void CargarMesas()
@@ -69,58 +78,80 @@ namespace Bar_LES_UTN
 
         }
 
+       
+
         private void ObtenerEstadoMesas()
-        {
-            disponibilidadMesas = lesUTN.EstadoMesas();
+        {   
+            for (int i = 1; i <= this.lesUTN.Mesas.Length; i++)
+            {
+                disponibilidadMesas.Add(i, this.lesUTN.Mesas[i - 1].MesaOcupada);
+            }
 
             foreach (KeyValuePair<int, bool> mesa in disponibilidadMesas)
             {
                 if (mesa.Value)
                 {
-                    botones[mesa.Key].BackColor = Color.Green;
+                    botones[mesa.Key].BackColor = Color.IndianRed;
+                   
                 }                    
                 else
                 {
-                    botones[mesa.Key].BackColor = Color.IndianRed;
+                    botones[mesa.Key].BackColor = Color.Green;
                 }
             }
         }
 
         private void InfoMesa(string info)
         {
-            lstMesas.DataSource = info;
+
+            rTxtMesas.Text = info;
         }
 
         private void btnMesaClick(object sender, EventArgs e)
         {
+            VerificarBotonYMesa(sender);
+                 
+        }
 
-            Button auxBtn = (Button)sender;          
+        private void VerificarBotonYMesa(object click)
+        {           
+            Button auxBtn = (Button)click;
 
             foreach (KeyValuePair<int, Button> item in botones)
             {
                 if (item.Value == auxBtn)
                 {
-                    mesaSeleccionada = lesUTN.Mesas[item.Key];
-
-                    if (!mesaSeleccionada.MesaOcupada)
+                    btnCobrarMesa.Enabled = false;
+      
+                    if (disponibilidadMesas[item.Key] == false)
                     {
-                        if(MessageBox.Show("Esta mesa está libre. /n ¿Desea abrir una cuenta a un cliente nuevo?","Atención",MessageBoxButtons.YesNo,MessageBoxIcon.Information) == DialogResult.Yes)
+                            
+                        if (MessageBox.Show("Esta mesa está libre. ¿Desea abrir una cuenta a un cliente nuevo?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                         {
-                            abrirCuenta = new AbrirCuenta(mesaSeleccionada,lesUTN);
+                            abrirCuenta = new AbrirCuenta(item.Key, lesUTN);
                             abrirCuenta.ShowDialog();
-                          
                         }
-                        
+
                     }
                     else
                     {
                         InfoMesa(lesUTN.MostrarInformacionMesa(item.Key));
                         btnCobrarMesa.Enabled = true;
                     }
+
+                    
+
                 }
             }
+        }
+
+        private void VerificarMesa()
+        {
+            
+
 
         }
+
 
         private void btn_salir_Click(object sender, EventArgs e)
         {
@@ -140,13 +171,17 @@ namespace Bar_LES_UTN
             if (MessageBox.Show(mensaje.ToString(), "Cerrar Cuenta", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
             {
                 mesaSeleccionada.Cliente = null;
-                mesaSeleccionada.MesaOcupada = false;
+
+                if (MessageBox.Show("Cuenta cerrada exitosamente. Desea liberar la mesa?", "Cerrar Cuenta", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    mesaSeleccionada.MesaOcupada = false;
+                }
             }
         }
 
         private void btnLiberarMesa_Click(object sender, EventArgs e)
         {
-
+            mesaSeleccionada.MesaOcupada = false;
         }
 
         private void btnStock_Click(object sender, EventArgs e)

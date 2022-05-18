@@ -25,25 +25,22 @@ namespace Bar_LES_UTN
         private AbrirCuenta()
         {
             InitializeComponent();
+
         }
 
-        public AbrirCuenta(Mesa mesaSeleccionada, Bar barActual) : this()
+        public AbrirCuenta(int nroMesa, Bar barActual) : this()
         {
-            mesaCuenta = mesaSeleccionada;
+            mesaCuenta = barActual.Mesas[nroMesa+1];
             bar = barActual;
-        }
-
-        private void AbrirCuenta_Load(object sender, EventArgs e)
-        {
             cmbComidas.DataSource = bar.Comidas;
             cmbBebidas.DataSource = bar.Bebidas;
             pedidosHastaAhora.Clear();
             pedidosHastaAhora.Append("***PEDIDO***");
             lstPedidos.DataSource = pedidosHastaAhora;
-            
+
             if (mesaCuenta.EsBarra)
             {
-                chkComidas.Enabled = false;  
+                chkComidas.Enabled = false;
             }
 
             cmbComidas.Enabled = false;
@@ -52,6 +49,11 @@ namespace Bar_LES_UTN
             lblCantidadBebidas.Enabled = false;
             txtCantBebidas.Enabled = false;
             txtCantComidas.Enabled = false;
+        }
+
+        private void AbrirCuenta_Load(object sender, EventArgs e)
+        {
+            
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -121,50 +123,65 @@ namespace Bar_LES_UTN
                 if(!mesaCuenta.EsBarra)
                 {
                     if (chkComidas.Checked)
-
-                        if (int.TryParse(txtCantComidas.Text, out int cantComidas))
+                    { 
+                        try
                         {
-                            try
-                            {
-                                if (bar.ProductosRestados((Comida)cmbComidas.SelectedItem, cantComidas))
-                                {
 
-                                    mesaCuenta.Cliente.Cuenta.Pedidos.Add((Comida)cmbComidas.SelectedValue);
-                                    mesaCuenta.Cliente.Cuenta.Pedidos.Last<Producto>().Existencias = cantComidas;
-                                    pedidosHastaAhora.AppendLine(((Comida)cmbComidas.SelectedValue).Nombre + "---------X" + cantComidas);
+                            if (int.TryParse(txtCantComidas.Text, out int cantComidas))
+                            {
+                            
+                                    if (bar.ProductosRestados((Comida)cmbComidas.SelectedItem, cantComidas))
+                                    {
 
-                                }
-                            }
-                            catch (SinStockExcepcion ex)
-                            {
-                                MessageBox.Show(ex.Message, "Sin Stock",MessageBoxButtons.OK,MessageBoxIcon.Exclamation); 
-                            }
-                            catch (SobreventaExcepcion ex)
-                            {
-                                MessageBox.Show(ex.Message, "Sobreventa", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message, "Error General", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        mesaCuenta.Cliente.Cuenta.Pedidos.Add((Comida)cmbComidas.SelectedValue);
+                                        mesaCuenta.Cliente.Cuenta.Pedidos.Last<Producto>().Existencias = cantComidas;
+                                        pedidosHastaAhora.AppendLine(((Comida)cmbComidas.SelectedValue).Nombre + "---------X" + cantComidas);
+                                    
+                                        if(!pedidoRealizado)
+                                        {
+                                            pedidoRealizado = true;
+                                        }
+
+                                    }
+
+                                    if (chkBebidas.Checked)
+                                    {
+                                        if (int.TryParse(txtCantBebidas.Text, out int cantBebidas))
+                                        {
+
+                                            if (bar.ProductosRestados((Bebida)cmbBebidas.SelectedItem, cantBebidas))
+                                            {
+
+                                                mesaCuenta.Cliente.Cuenta.Pedidos.Add((Bebida)cmbBebidas.SelectedValue);
+                                                mesaCuenta.Cliente.Cuenta.Pedidos.Last<Producto>().Existencias = cantBebidas;
+                                                pedidosHastaAhora.AppendLine(((Bebida)cmbBebidas.SelectedValue).Nombre + "---------X" + cantBebidas);
+
+                                                if (!pedidoRealizado)
+                                                {
+                                                    pedidoRealizado = true;
+                                                }
+                                            }
+                                        }
+                                    }
+
                             }
                         }
-                }
-
-                if (chkBebidas.Checked)
-                {
-                    if (int.TryParse(txtCantBebidas.Text, out int cantBebidas))
-                    {
-
-                        if (bar.ProductosRestados((Bebida)cmbBebidas.SelectedItem, cantBebidas))
+                        catch (SinStockExcepcion ex)
                         {
-
-                            mesaCuenta.Cliente.Cuenta.Pedidos.Add((Bebida)cmbBebidas.SelectedValue);
-                            mesaCuenta.Cliente.Cuenta.Pedidos.Last<Producto>().Existencias = cantBebidas;
-                            pedidosHastaAhora.AppendLine(((Bebida)cmbBebidas.SelectedValue).Nombre + "---------X" + cantBebidas);
-
+                            MessageBox.Show(ex.Message, "Sin Stock", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        catch (SobreventaExcepcion ex)
+                        {
+                            MessageBox.Show(ex.Message, "Sobreventa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error General", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
+
+                
 
         }
 

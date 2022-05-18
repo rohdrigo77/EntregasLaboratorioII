@@ -31,7 +31,7 @@ namespace Bar_LES_UTN
         {
             this.txtDNI = new System.Windows.Forms.TextBox();
             this.lblDni = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPass = new System.Windows.Forms.Label();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.lblSlogan = new System.Windows.Forms.Label();
             this.lblBar = new System.Windows.Forms.Label();
@@ -57,16 +57,16 @@ namespace Bar_LES_UTN
             this.lblDni.TabIndex = 1;
             this.lblDni.Text = "DNI:";
             // 
-            // label1
+            // lblPass
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(110, 210);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 23);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "PASS:";
+            this.lblPass.AutoSize = true;
+            this.lblPass.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.lblPass.Location = new System.Drawing.Point(110, 210);
+            this.lblPass.Name = "lblPass";
+            this.lblPass.Size = new System.Drawing.Size(60, 23);
+            this.lblPass.TabIndex = 2;
+            this.lblPass.Text = "PASS:";
             // 
             // txtPass
             // 
@@ -128,7 +128,7 @@ namespace Bar_LES_UTN
             this.Controls.Add(this.lblBar);
             this.Controls.Add(this.lblSlogan);
             this.Controls.Add(this.txtPass);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblPass);
             this.Controls.Add(this.lblDni);
             this.Controls.Add(this.txtDNI);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -145,7 +145,7 @@ namespace Bar_LES_UTN
 
         private System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.Label lblDni;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPass;
         private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.Label lblSlogan;
         private System.Windows.Forms.Label lblBar;

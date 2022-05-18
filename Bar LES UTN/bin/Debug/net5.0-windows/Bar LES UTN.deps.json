@@ -7,14 +7,40 @@
   "targets": {
     ".NETCoreApp,Version=v5.0": {
       "Bar LES UTN/1.0.0": {
+        "dependencies": {
+          "EntidadesBar": "1.0.0"
+        },
         "runtime": {
           "Bar LES UTN.dll": {}
+        }
+      },
+      "EntidadesBar/1.0.0": {
+        "dependencies": {
+          "Excepciones": "1.0.0"
+        },
+        "runtime": {
+          "EntidadesBar.dll": {}
+        }
+      },
+      "Excepciones/1.0.0": {
+        "runtime": {
+          "Excepciones.dll": {}
         }
       }
     }
   },
   "libraries": {
     "Bar LES UTN/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EntidadesBar/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Excepciones/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

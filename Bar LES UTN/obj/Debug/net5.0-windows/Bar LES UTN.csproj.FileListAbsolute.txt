@@ -3,7 +3,6 @@ C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\Bar LES UTN.dep
 C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\Bar LES UTN.runtimeconfig.json
 C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\Bar LES UTN.runtimeconfig.dev.json
 C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\Bar LES UTN.dll
-C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\ref\Bar LES UTN.dll
 C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\Bar LES UTN.pdb
 C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar LES UTN.csproj.AssemblyReference.cache
 C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar_LES_UTN.Bienvenidx.resources
@@ -20,3 +19,9 @@ C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar LES UTN.pdb
 C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar LES UTN.genruntimeconfig.cache
 C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar_LES_UTN.Lista_Empleados.resources
 C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar_LES_UTN.AbrirCuenta.resources
+C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\EntidadesBar.dll
+C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\Excepciones.dll
+C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\EntidadesBar.pdb
+C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\Excepciones.pdb
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar LES UTN.csproj.CopyComplete
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\refint\Bar LES UTN.dll

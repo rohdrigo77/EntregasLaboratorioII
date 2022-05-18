@@ -51,7 +51,6 @@ namespace Bar_LES_UTN
             this.btnMesa20 = new System.Windows.Forms.Button();
             this.lblMesas = new System.Windows.Forms.Label();
             this.lblBarra = new System.Windows.Forms.Label();
-            this.lstMesas = new System.Windows.Forms.ListBox();
             this.btnCobrarMesa = new System.Windows.Forms.Button();
             this.btnLiberarMesa = new System.Windows.Forms.Button();
             this.btnStock = new System.Windows.Forms.Button();
@@ -59,6 +58,7 @@ namespace Bar_LES_UTN
             this.lblSesion = new System.Windows.Forms.Label();
             this.lblNombreUsuario = new System.Windows.Forms.Label();
             this.lblEmpleadoAdmin = new System.Windows.Forms.Label();
+            this.rTxtMesas = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // btnMesa1
@@ -320,7 +320,6 @@ namespace Bar_LES_UTN
             this.btnMesa20.Text = "20";
             this.btnMesa20.UseVisualStyleBackColor = false;
             this.btnMesa20.Click += new System.EventHandler(this.btnMesaClick);
-
             // 
             // lblMesas
             // 
@@ -343,15 +342,6 @@ namespace Bar_LES_UTN
             this.lblBarra.Size = new System.Drawing.Size(84, 37);
             this.lblBarra.TabIndex = 25;
             this.lblBarra.Text = "Barra:";
-            // 
-            // lstMesas
-            // 
-            this.lstMesas.FormattingEnabled = true;
-            this.lstMesas.ItemHeight = 15;
-            this.lstMesas.Location = new System.Drawing.Point(887, 44);
-            this.lstMesas.Name = "lstMesas";
-            this.lstMesas.Size = new System.Drawing.Size(397, 289);
-            this.lstMesas.TabIndex = 26;
             // 
             // btnCobrarMesa
             // 
@@ -430,12 +420,21 @@ namespace Bar_LES_UTN
             this.lblEmpleadoAdmin.Text = "Empleado Administrador";
             this.lblEmpleadoAdmin.Visible = false;
             // 
+            // rTxtMesas
+            // 
+            this.rTxtMesas.Location = new System.Drawing.Point(888, 49);
+            this.rTxtMesas.Name = "rTxtMesas";
+            this.rTxtMesas.Size = new System.Drawing.Size(395, 284);
+            this.rTxtMesas.TabIndex = 34;
+            this.rTxtMesas.Text = "";
+            // 
             // VistaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(1296, 499);
+            this.Controls.Add(this.rTxtMesas);
             this.Controls.Add(this.lblEmpleadoAdmin);
             this.Controls.Add(this.lblNombreUsuario);
             this.Controls.Add(this.lblSesion);
@@ -443,7 +442,6 @@ namespace Bar_LES_UTN
             this.Controls.Add(this.btnStock);
             this.Controls.Add(this.btnLiberarMesa);
             this.Controls.Add(this.btnCobrarMesa);
-            this.Controls.Add(this.lstMesas);
             this.Controls.Add(this.lblBarra);
             this.Controls.Add(this.lblMesas);
             this.Controls.Add(this.btnMesa20);
@@ -499,7 +497,6 @@ namespace Bar_LES_UTN
         private System.Windows.Forms.Button btnMesa20;
         private System.Windows.Forms.Label lblMesas;
         private System.Windows.Forms.Label lblBarra;
-        private System.Windows.Forms.ListBox lstMesas;
         private System.Windows.Forms.Button btnCobrarMesa;
         private System.Windows.Forms.Button btnLiberarMesa;
         private System.Windows.Forms.Button btnStock;
@@ -507,6 +504,7 @@ namespace Bar_LES_UTN
         private System.Windows.Forms.Label lblSesion;
         private System.Windows.Forms.Label lblNombreUsuario;
         private System.Windows.Forms.Label lblEmpleadoAdmin;
+        private System.Windows.Forms.RichTextBox rTxtMesas;
     }
 }
 
