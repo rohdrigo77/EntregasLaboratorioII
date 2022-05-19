@@ -118,68 +118,66 @@ namespace Bar_LES_UTN
         }
 
         private void btnAgregarPedido_Click(object sender, EventArgs e)
-        {        
+        {
+            Comida comida = (Comida)cmbComidas.SelectedItem;
+            Bebida bebida = (Bebida)cmbBebidas.SelectedItem;
+            
 
-                if(!mesaCuenta.EsBarra)
-                {
-                    if (chkComidas.Checked)
-                    { 
-                        try
+            if(!mesaCuenta.EsBarra)
+            {
+                if (chkComidas.Checked)
+                { 
+                    try
+                    {
+
+                        if (int.TryParse(txtCantComidas.Text, out int cantComidas))
                         {
-
-                            if (int.TryParse(txtCantComidas.Text, out int cantComidas))
-                            {
                             
-                                    if (bar.ProductosRestados((Comida)cmbComidas.SelectedItem, cantComidas))
-                                    {
-
-                                        mesaCuenta.Cliente.Cuenta.Pedidos.Add((Comida)cmbComidas.SelectedValue);
-                                        mesaCuenta.Cliente.Cuenta.Pedidos.Last<Producto>().Existencias = cantComidas;
-                                        pedidosHastaAhora.AppendLine(((Comida)cmbComidas.SelectedValue).Nombre + "---------X" + cantComidas);
+                                if (bar.ProductosRestados(comida, cantComidas))
+                                {
                                     
-                                        if(!pedidoRealizado)
-                                        {
-                                            pedidoRealizado = true;
-                                        }
+                                    mesaCuenta.Cliente.Cuenta.PedidosDic.Add(comida.IdProducto, cantComidas);                                    
+                                    pedidosHastaAhora.AppendLine(comida.Nombre + "---------X" + cantComidas);
+                                                                     
+                                }
 
-                                    }
-
-                                    if (chkBebidas.Checked)
+                                if (chkBebidas.Checked)
+                                {
+                                    if (int.TryParse(txtCantBebidas.Text, out int cantBebidas))
                                     {
-                                        if (int.TryParse(txtCantBebidas.Text, out int cantBebidas))
+
+                                        if (bar.ProductosRestados(bebida, cantBebidas))
                                         {
 
-                                            if (bar.ProductosRestados((Bebida)cmbBebidas.SelectedItem, cantBebidas))
-                                            {
+                                            mesaCuenta.Cliente.Cuenta.PedidosDic.Add(bebida.IdProducto, cantBebidas);                                            
+                                            pedidosHastaAhora.AppendLine(bebida.Nombre + "---------X" + cantBebidas);
 
-                                                mesaCuenta.Cliente.Cuenta.Pedidos.Add((Bebida)cmbBebidas.SelectedValue);
-                                                mesaCuenta.Cliente.Cuenta.Pedidos.Last<Producto>().Existencias = cantBebidas;
-                                                pedidosHastaAhora.AppendLine(((Bebida)cmbBebidas.SelectedValue).Nombre + "---------X" + cantBebidas);
-
-                                                if (!pedidoRealizado)
-                                                {
-                                                    pedidoRealizado = true;
-                                                }
-                                            }
+                                            
                                         }
                                     }
+                                }
 
-                            }
-                        }
-                        catch (SinStockExcepcion ex)
-                        {
-                            MessageBox.Show(ex.Message, "Sin Stock", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
-                        catch (SobreventaExcepcion ex)
-                        {
-                            MessageBox.Show(ex.Message, "Sobreventa", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message, "Error General", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                if (pedidoRealizado == false)
+                                {
+                                    pedidoRealizado = true;
+                                }
+
                         }
                     }
+                    catch (SinStockExcepcion ex)
+                    {
+                        MessageBox.Show(ex.Message, "Sin Stock", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    catch (SobreventaExcepcion ex)
+                    {
+                        MessageBox.Show(ex.Message, "Sobreventa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error General", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
+            }
 
                 
 

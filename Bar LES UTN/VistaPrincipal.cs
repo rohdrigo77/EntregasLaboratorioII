@@ -19,6 +19,8 @@ namespace Bar_LES_UTN
         Dictionary<int, Button> botones;
         Dictionary<int, bool> disponibilidadMesas;
         Bar lesUTN;
+        EventArgs argsMesaClick;
+        bool cuentaCerrada=false;
 
         private VistaPrincipal()
         {
@@ -30,20 +32,20 @@ namespace Bar_LES_UTN
         public VistaPrincipal(Empleado empleadoActual, Bar barLogueado)
         : this()
         {
- 
+
             empleadoLogueado = empleadoActual;
             lblNombreUsuario.Text = empleadoActual.Nombre;
-            lesUTN = barLogueado;                    
+            lesUTN = barLogueado;
             CargarMesas();
             ObtenerEstadoMesas();
-            btnCobrarMesa.Enabled = false;
+            btnCobrarYLiberarMesa.Enabled = false;
 
             if (empleadoLogueado.Permisos == EPermisos.Administrador)
             {
                 lblEmpleadoAdmin.Visible = true;
                 this.BackColor = Color.Yellow;
             }
-            
+
 
         }
 
@@ -78,10 +80,10 @@ namespace Bar_LES_UTN
 
         }
 
-       
+
 
         private void ObtenerEstadoMesas()
-        {   
+        {
             for (int i = 1; i <= this.lesUTN.Mesas.Length; i++)
             {
                 disponibilidadMesas.Add(i, this.lesUTN.Mesas[i - 1].MesaOcupada);
@@ -92,8 +94,8 @@ namespace Bar_LES_UTN
                 if (mesa.Value)
                 {
                     botones[mesa.Key].BackColor = Color.IndianRed;
-                   
-                }                    
+
+                }
                 else
                 {
                     botones[mesa.Key].BackColor = Color.Green;
@@ -109,80 +111,125 @@ namespace Bar_LES_UTN
 
         private void btnMesaClick(object sender, EventArgs e)
         {
+            argsMesaClick = e;
             VerificarBotonYMesa(sender);
-                 
+
         }
 
         private void VerificarBotonYMesa(object click)
-        {           
+        {
             Button auxBtn = (Button)click;
 
+            VerificarBoton(auxBtn);
+
+            
+        }
+
+        private void VerificarBoton(Button boton)
+        {
             foreach (KeyValuePair<int, Button> item in botones)
             {
-                if (item.Value == auxBtn)
+                if (item.Value == boton)
                 {
-                    btnCobrarMesa.Enabled = false;
-      
-                    if (disponibilidadMesas[item.Key] == false)
+
+                    mesaSeleccionada = lesUTN.Mesas[item.Key - 1];
+
+                    VerificarMesas();
+
+                    break;
+                }
+            }
+        }
+
+        private void VerificarMesas()
+        {
+            foreach (KeyValuePair<int, bool> mesa in disponibilidadMesas)
+            {
+                if (mesa.Value)
+                {
+
+                    if (mesaSeleccionada.Cliente.Cuenta is null)
                     {
-                            
-                        if (MessageBox.Show("Esta mesa está libre. ¿Desea abrir una cuenta a un cliente nuevo?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                        if (MessageBox.Show("¿Desea abrir una cuenta a un cliente nuevo?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                         {
-                            abrirCuenta = new AbrirCuenta(item.Key, lesUTN);
+                            abrirCuenta = new AbrirCuenta(mesaSeleccionada.NumeroMesa, lesUTN);
                             abrirCuenta.ShowDialog();
                         }
 
                     }
                     else
                     {
-                        InfoMesa(lesUTN.MostrarInformacionMesa(item.Key));
-                        btnCobrarMesa.Enabled = true;
+                        InfoMesa(lesUTN.MostrarInformacionMesa(mesaSeleccionada.NumeroMesa));
+                        btnCobrarYLiberarMesa.Enabled = true;
+
                     }
 
-                    
-
                 }
+
+                break;
+
             }
         }
 
-        private void VerificarMesa()
-        {
-            
 
-
-        }
 
 
         private void btn_salir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
 
-        private void btnCobrarMesa_Click(object sender, EventArgs e)
-        {
-            StringBuilder mensaje = new StringBuilder();  
 
-            
+
+        private void CobrarMesa()
+        {
+            StringBuilder mensaje = new StringBuilder();
+
+
             mensaje.Append("Está por cerrar la cuenta de esta mesa. Continuar?");
             mensaje.AppendLine(" ");
             mensaje.AppendLine(mesaSeleccionada.ToString());
 
             if (MessageBox.Show(mensaje.ToString(), "Cerrar Cuenta", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
             {
+                cuentaCerrada = true;
                 mesaSeleccionada.Cliente = null;
+                
 
                 if (MessageBox.Show("Cuenta cerrada exitosamente. Desea liberar la mesa?", "Cerrar Cuenta", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    mesaSeleccionada.MesaOcupada = false;
+                    LiberarMesa();
                 }
             }
         }
 
-        private void btnLiberarMesa_Click(object sender, EventArgs e)
+        private void btnCobrarYLiberarMesa_Click(object sender, EventArgs e)
         {
-            mesaSeleccionada.MesaOcupada = false;
+            LiberarMesa();
         }
+
+        private void LiberarMesa()
+        {
+            if (cuentaCerrada == false)
+            {
+
+                if (MessageBox.Show("Desea cerrar la cuenta y liberar la mesa?", "Cerrar Cuenta", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    mesaSeleccionada.MesaOcupada = false;
+                    botones[mesaSeleccionada.NumeroMesa].BackColor = Color.Green;
+                    CobrarMesa();
+                }
+            }
+            else
+            {
+                if (MessageBox.Show("Mesa liberada. Desea abrir otra cuenta en la misma?", "Cerrar Cuenta", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    btnMesaClick(botones[mesaSeleccionada.NumeroMesa],argsMesaClick);
+                }
+            }
+        }
+
 
         private void btnStock_Click(object sender, EventArgs e)
         {

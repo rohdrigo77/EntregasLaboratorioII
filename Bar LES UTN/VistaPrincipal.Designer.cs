@@ -51,8 +51,7 @@ namespace Bar_LES_UTN
             this.btnMesa20 = new System.Windows.Forms.Button();
             this.lblMesas = new System.Windows.Forms.Label();
             this.lblBarra = new System.Windows.Forms.Label();
-            this.btnCobrarMesa = new System.Windows.Forms.Button();
-            this.btnLiberarMesa = new System.Windows.Forms.Button();
+            this.btnCobrarYLiberarMesa = new System.Windows.Forms.Button();
             this.btnStock = new System.Windows.Forms.Button();
             this.btnEmpleados = new System.Windows.Forms.Button();
             this.lblSesion = new System.Windows.Forms.Label();
@@ -343,32 +342,21 @@ namespace Bar_LES_UTN
             this.lblBarra.TabIndex = 25;
             this.lblBarra.Text = "Barra:";
             // 
-            // btnCobrarMesa
+            // btnCobrarYLiberarMesa
             // 
-            this.btnCobrarMesa.ForeColor = System.Drawing.Color.Black;
-            this.btnCobrarMesa.Location = new System.Drawing.Point(888, 339);
-            this.btnCobrarMesa.Name = "btnCobrarMesa";
-            this.btnCobrarMesa.Size = new System.Drawing.Size(396, 31);
-            this.btnCobrarMesa.TabIndex = 27;
-            this.btnCobrarMesa.Text = "Cobrar Mesa";
-            this.btnCobrarMesa.UseVisualStyleBackColor = true;
-            this.btnCobrarMesa.Click += new System.EventHandler(this.btnCobrarMesa_Click);
-            // 
-            // btnLiberarMesa
-            // 
-            this.btnLiberarMesa.ForeColor = System.Drawing.Color.Black;
-            this.btnLiberarMesa.Location = new System.Drawing.Point(887, 376);
-            this.btnLiberarMesa.Name = "btnLiberarMesa";
-            this.btnLiberarMesa.Size = new System.Drawing.Size(396, 31);
-            this.btnLiberarMesa.TabIndex = 28;
-            this.btnLiberarMesa.Text = "Liberar Mesa";
-            this.btnLiberarMesa.UseVisualStyleBackColor = true;
-            this.btnLiberarMesa.Click += new System.EventHandler(this.btnLiberarMesa_Click);
+            this.btnCobrarYLiberarMesa.ForeColor = System.Drawing.Color.Black;
+            this.btnCobrarYLiberarMesa.Location = new System.Drawing.Point(887, 380);
+            this.btnCobrarYLiberarMesa.Name = "btnCobrarYLiberarMesa";
+            this.btnCobrarYLiberarMesa.Size = new System.Drawing.Size(396, 31);
+            this.btnCobrarYLiberarMesa.TabIndex = 28;
+            this.btnCobrarYLiberarMesa.Text = "Cobrar y Liberar Mesa";
+            this.btnCobrarYLiberarMesa.UseVisualStyleBackColor = true;
+            this.btnCobrarYLiberarMesa.Click += new System.EventHandler(this.btnCobrarYLiberarMesa_Click);
             // 
             // btnStock
             // 
             this.btnStock.ForeColor = System.Drawing.Color.Black;
-            this.btnStock.Location = new System.Drawing.Point(887, 413);
+            this.btnStock.Location = new System.Drawing.Point(887, 417);
             this.btnStock.Name = "btnStock";
             this.btnStock.Size = new System.Drawing.Size(396, 31);
             this.btnStock.TabIndex = 29;
@@ -379,7 +367,7 @@ namespace Bar_LES_UTN
             // btnEmpleados
             // 
             this.btnEmpleados.ForeColor = System.Drawing.Color.Black;
-            this.btnEmpleados.Location = new System.Drawing.Point(887, 450);
+            this.btnEmpleados.Location = new System.Drawing.Point(888, 454);
             this.btnEmpleados.Name = "btnEmpleados";
             this.btnEmpleados.Size = new System.Drawing.Size(396, 31);
             this.btnEmpleados.TabIndex = 30;
@@ -424,7 +412,7 @@ namespace Bar_LES_UTN
             // 
             this.rTxtMesas.Location = new System.Drawing.Point(888, 49);
             this.rTxtMesas.Name = "rTxtMesas";
-            this.rTxtMesas.Size = new System.Drawing.Size(395, 284);
+            this.rTxtMesas.Size = new System.Drawing.Size(395, 325);
             this.rTxtMesas.TabIndex = 34;
             this.rTxtMesas.Text = "";
             // 
@@ -440,8 +428,7 @@ namespace Bar_LES_UTN
             this.Controls.Add(this.lblSesion);
             this.Controls.Add(this.btnEmpleados);
             this.Controls.Add(this.btnStock);
-            this.Controls.Add(this.btnLiberarMesa);
-            this.Controls.Add(this.btnCobrarMesa);
+            this.Controls.Add(this.btnCobrarYLiberarMesa);
             this.Controls.Add(this.lblBarra);
             this.Controls.Add(this.lblMesas);
             this.Controls.Add(this.btnMesa20);
@@ -497,8 +484,7 @@ namespace Bar_LES_UTN
         private System.Windows.Forms.Button btnMesa20;
         private System.Windows.Forms.Label lblMesas;
         private System.Windows.Forms.Label lblBarra;
-        private System.Windows.Forms.Button btnCobrarMesa;
-        private System.Windows.Forms.Button btnLiberarMesa;
+        private System.Windows.Forms.Button btnCobrarYLiberarMesa;
         private System.Windows.Forms.Button btnStock;
         private System.Windows.Forms.Button btnEmpleados;
         private System.Windows.Forms.Label lblSesion;
