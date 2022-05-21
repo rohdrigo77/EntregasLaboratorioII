@@ -23,6 +23,20 @@ namespace EntidadesBar
 
     public enum EBebidas
     {
-
+        CocaColaDosLitros = 0, 
+        CocaColaLitro,
+        Brahma,
+        Andes
     }
+
+    public enum EComidas
+    {
+        HamburCompleta,
+        HamburSuprema,
+        Entradita,
+    }
+
+    
+
+
 }

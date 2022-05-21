@@ -125,8 +125,6 @@ namespace EntidadesBar
         public override string ToString()
         {
 
-
-
             return this.MostrarPedidoYCosto();
         }
 

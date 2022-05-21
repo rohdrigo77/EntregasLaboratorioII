@@ -46,6 +46,8 @@ namespace Bar_LES_UTN
             this.chkComidas = new System.Windows.Forms.CheckBox();
             this.chkBebidas = new System.Windows.Forms.CheckBox();
             this.rTxtPedidos = new System.Windows.Forms.RichTextBox();
+            this.lblTamano = new System.Windows.Forms.Label();
+            this.cmbTamano = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblNombre
@@ -94,7 +96,7 @@ namespace Bar_LES_UTN
             this.cmbComidas.FormattingEnabled = true;
             this.cmbComidas.Location = new System.Drawing.Point(88, 100);
             this.cmbComidas.Name = "cmbComidas";
-            this.cmbComidas.Size = new System.Drawing.Size(577, 23);
+            this.cmbComidas.Size = new System.Drawing.Size(573, 23);
             this.cmbComidas.TabIndex = 6;
             this.cmbComidas.SelectedIndexChanged += new System.EventHandler(this.cmbComidas_SelectedIndexChanged);
             // 
@@ -119,7 +121,7 @@ namespace Bar_LES_UTN
             this.cmbBebidas.FormattingEnabled = true;
             this.cmbBebidas.Location = new System.Drawing.Point(88, 129);
             this.cmbBebidas.Name = "cmbBebidas";
-            this.cmbBebidas.Size = new System.Drawing.Size(577, 23);
+            this.cmbBebidas.Size = new System.Drawing.Size(447, 23);
             this.cmbBebidas.TabIndex = 10;
             this.cmbBebidas.SelectedIndexChanged += new System.EventHandler(this.cmbBebidas_SelectedIndexChanged);
             // 
@@ -199,11 +201,31 @@ namespace Bar_LES_UTN
             this.rTxtPedidos.TabIndex = 19;
             this.rTxtPedidos.Text = "";
             // 
+            // lblTamano
+            // 
+            this.lblTamano.AutoSize = true;
+            this.lblTamano.Location = new System.Drawing.Point(541, 137);
+            this.lblTamano.Name = "lblTamano";
+            this.lblTamano.Size = new System.Drawing.Size(52, 15);
+            this.lblTamano.TabIndex = 20;
+            this.lblTamano.Text = "Tamaño:";
+            // 
+            // cmbTamano
+            // 
+            this.cmbTamano.FormattingEnabled = true;
+            this.cmbTamano.Location = new System.Drawing.Point(599, 129);
+            this.cmbTamano.Name = "cmbTamano";
+            this.cmbTamano.Size = new System.Drawing.Size(62, 23);
+            this.cmbTamano.TabIndex = 21;
+            this.cmbTamano.SelectedIndexChanged += new System.EventHandler(this.cmbTamano_SelectedIndexChanged);
+            // 
             // AbrirCuenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 496);
+            this.Controls.Add(this.cmbTamano);
+            this.Controls.Add(this.lblTamano);
             this.Controls.Add(this.rTxtPedidos);
             this.Controls.Add(this.chkBebidas);
             this.Controls.Add(this.chkComidas);
@@ -248,5 +270,7 @@ namespace Bar_LES_UTN
         private System.Windows.Forms.CheckBox chkComidas;
         private System.Windows.Forms.CheckBox chkBebidas;
         private System.Windows.Forms.RichTextBox rTxtPedidos;
+        private System.Windows.Forms.Label lblTamano;
+        private System.Windows.Forms.ComboBox cmbTamano;
     }
 }

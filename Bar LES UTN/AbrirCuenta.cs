@@ -32,8 +32,9 @@ namespace Bar_LES_UTN
         {
             mesaCuenta = barActual.Mesas[nroMesa+1];
             bar = barActual;
-            cmbBebidas.DataSource = bar.Bebidas;
-            cmbComidas.DataSource = bar.Comidas;
+            cmbBebidas.DataSource = Enum.GetValues(typeof(EBebidas));
+            cmbComidas.DataSource = Enum.GetValues(typeof(EComidas));
+            cmbTamano.DataSource = Enum.GetValues(typeof(EVersionBebida));
             pedidosHastaAhora.Clear();
             pedidosHastaAhora.Append("***PEDIDO***");
             rTxtPedidos.Text = pedidosHastaAhora.ToString();
@@ -124,8 +125,9 @@ namespace Bar_LES_UTN
 
         private void cmbComidas_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
-            cmbComidas.Text = bar.Comidas[cmbComidas.SelectedIndex].ToString();
+
+            cmbBebidas.Text = Enum.GetName(typeof(EBebidas), cmbBebidas.SelectedIndex);
+
         }
 
         private void btnAgregarPedido_Click(object sender, EventArgs e)
@@ -161,7 +163,7 @@ namespace Bar_LES_UTN
                                         {
 
                                             mesaCuenta.Cliente.Cuenta.PedidosDic.Add(bebida.IdProducto, cantBebidas);                                            
-                                            pedidosHastaAhora.AppendLine(bebida.Nombre + "---------X" + cantBebidas);
+                                            pedidosHastaAhora.AppendLine(bebida.Nombre + "----" + bebida.Formato + "-----X" + cantBebidas);
 
                                             
                                         }
@@ -231,7 +233,15 @@ namespace Bar_LES_UTN
 
         private void cmbBebidas_SelectedIndexChanged(object sender, EventArgs e)
         {
-             cmbBebidas.Text = bar.Bebidas[cmbBebidas.SelectedIndex].ToString();
+   
+            cmbBebidas.Text = Enum.GetName(typeof(EBebidas), cmbBebidas.SelectedIndex);
+        }
+
+        private void cmbTamano_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            cmbTamano.Text = Enum.GetName(typeof(EVersionBebida), cmbTamano.SelectedIndex);
+                     
         }
     }
 }

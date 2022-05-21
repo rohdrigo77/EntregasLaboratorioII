@@ -31,6 +31,14 @@ namespace EntidadesBar
             }
         }
 
+        public string Formato
+        {
+            get
+            {
+                return this.formato.ToString();
+            }
+        }
+
         public override bool ReponerProducto(int cantidad)
         {
             if (this.Existencias < 200 && cantidad > 0)
