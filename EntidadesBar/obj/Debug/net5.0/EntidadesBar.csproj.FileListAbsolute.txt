@@ -1,0 +1,15 @@
+C:\Users\btz_p\source\repos\EntidadesBar\obj\Debug\net5.0\EntidadesBar.csproj.AssemblyReference.cache
+C:\Users\btz_p\source\repos\EntidadesBar\obj\Debug\net5.0\EntidadesBar.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\btz_p\source\repos\EntidadesBar\obj\Debug\net5.0\EntidadesBar.AssemblyInfoInputs.cache
+C:\Users\btz_p\source\repos\EntidadesBar\obj\Debug\net5.0\EntidadesBar.AssemblyInfo.cs
+C:\Users\btz_p\source\repos\EntidadesBar\obj\Debug\net5.0\EntidadesBar.csproj.CoreCompileInputs.cache
+C:\Users\btz_p\source\repos\EntidadesBar\bin\Debug\net5.0\EntidadesBar.deps.json
+C:\Users\btz_p\source\repos\EntidadesBar\bin\Debug\net5.0\EntidadesBar.dll
+C:\Users\btz_p\source\repos\EntidadesBar\bin\Debug\net5.0\EntidadesBar.pdb
+C:\Users\btz_p\source\repos\EntidadesBar\bin\Debug\net5.0\Excepciones.dll
+C:\Users\btz_p\source\repos\EntidadesBar\bin\Debug\net5.0\Excepciones.pdb
+C:\Users\btz_p\source\repos\EntidadesBar\obj\Debug\net5.0\EntidadesBar.csproj.CopyComplete
+C:\Users\btz_p\source\repos\EntidadesBar\obj\Debug\net5.0\EntidadesBar.dll
+C:\Users\btz_p\source\repos\EntidadesBar\obj\Debug\net5.0\EntidadesBar.pdb
+C:\Users\btz_p\source\repos\EntidadesBar\obj\Debug\net5.0\ref\EntidadesBar.dll
+C:\Users\btz_p\source\repos\EntidadesBar\obj\Debug\net5.0\refint\EntidadesBar.dll

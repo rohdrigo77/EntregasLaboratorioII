@@ -32,11 +32,11 @@ namespace Bar_LES_UTN
         {
             mesaCuenta = barActual.Mesas[nroMesa+1];
             bar = barActual;
-            cmbComidas.DataSource = bar.Comidas;
             cmbBebidas.DataSource = bar.Bebidas;
+            cmbComidas.DataSource = bar.Comidas;
             pedidosHastaAhora.Clear();
             pedidosHastaAhora.Append("***PEDIDO***");
-            lstPedidos.DataSource = pedidosHastaAhora;
+            rTxtPedidos.Text = pedidosHastaAhora.ToString();
 
             if (mesaCuenta.EsBarra)
             {
@@ -62,11 +62,20 @@ namespace Bar_LES_UTN
 
             nombreCliente = txtNombre.Text.Trim() + " " + txtApellido.Text.Trim();
 
-            nombreCliente = AcomodarNombre(nombreCliente, nombreVerificado);
+            nombreCliente = AcomodarNombre(nombreCliente);
 
             if (nombreVerificado && pedidoRealizado)
             {
-
+                if(MessageBox.Show(pedidosHastaAhora.ToString(),"Confirmar Pedido",MessageBoxButtons.OKCancel,MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    mesaCuenta.Cliente.Nombre = nombreCliente;
+                   
+                }
+                else
+                {
+                    mesaCuenta.Cliente.Cuenta.PedidosList.Clear();
+                    mesaCuenta.Cliente.Cuenta.PedidosDic.Clear();
+                }
             }
 
 
@@ -77,7 +86,7 @@ namespace Bar_LES_UTN
 
         }
 
-        public string AcomodarNombre(string nombreAAcomodar, bool cuentaAgregada)
+        public string AcomodarNombre(string nombreAAcomodar)
         {
             string nombreAcomodado = nombreAAcomodar;
 
@@ -94,6 +103,7 @@ namespace Bar_LES_UTN
                         char.ToLower(nombreAAcomodar[i]);
                     }
                 }
+                nombreVerificado = true;
             }
             else
             {
@@ -114,7 +124,8 @@ namespace Bar_LES_UTN
 
         private void cmbComidas_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+          
+            cmbComidas.Text = bar.Comidas[cmbComidas.SelectedIndex].ToString();
         }
 
         private void btnAgregarPedido_Click(object sender, EventArgs e)
@@ -185,16 +196,42 @@ namespace Bar_LES_UTN
 
         private void chkComidas_CheckedChanged(object sender, EventArgs e)
         {
-            cmbComidas.Enabled = true;
-            lblCantidadComidas.Enabled = true;
-            txtCantComidas.Enabled = true;
+            if (chkComidas.Checked == true)
+            {
+                cmbComidas.Enabled = true;
+                lblCantidadComidas.Enabled = true;
+                txtCantComidas.Enabled = true;
+            }
+            else
+            {
+                cmbComidas.Enabled = false;
+                lblCantidadComidas.Enabled = false;
+                txtCantComidas.Enabled = false;
+            }
+           
         }
 
         private void chkBebidas_CheckedChanged(object sender, EventArgs e)
         {
-            cmbBebidas.Enabled = true;
-            lblCantidadBebidas.Enabled = true;
-            txtCantBebidas.Enabled = true;
+           
+
+            if (chkBebidas.Checked == true)
+            {
+                cmbBebidas.Enabled = true;
+                lblCantidadBebidas.Enabled = true;
+                txtCantBebidas.Enabled = true;
+            }
+            else
+            {
+                cmbBebidas.Enabled = false;
+                lblCantidadBebidas.Enabled = false;
+                txtCantBebidas.Enabled = false;
+            }
+        }
+
+        private void cmbBebidas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+             cmbBebidas.Text = bar.Bebidas[cmbBebidas.SelectedIndex].ToString();
         }
     }
 }

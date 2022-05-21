@@ -344,6 +344,7 @@ namespace Bar_LES_UTN
             // 
             // btnCobrarYLiberarMesa
             // 
+            this.btnCobrarYLiberarMesa.Enabled = false;
             this.btnCobrarYLiberarMesa.ForeColor = System.Drawing.Color.Black;
             this.btnCobrarYLiberarMesa.Location = new System.Drawing.Point(887, 380);
             this.btnCobrarYLiberarMesa.Name = "btnCobrarYLiberarMesa";

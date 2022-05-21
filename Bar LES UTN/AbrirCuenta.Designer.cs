@@ -42,10 +42,10 @@ namespace Bar_LES_UTN
             this.txtCantBebidas = new System.Windows.Forms.TextBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.lstPedidos = new System.Windows.Forms.ListBox();
             this.btnAgregarPedido = new System.Windows.Forms.Button();
             this.chkComidas = new System.Windows.Forms.CheckBox();
             this.chkBebidas = new System.Windows.Forms.CheckBox();
+            this.rTxtPedidos = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // lblNombre
@@ -121,6 +121,7 @@ namespace Bar_LES_UTN
             this.cmbBebidas.Name = "cmbBebidas";
             this.cmbBebidas.Size = new System.Drawing.Size(577, 23);
             this.cmbBebidas.TabIndex = 10;
+            this.cmbBebidas.SelectedIndexChanged += new System.EventHandler(this.cmbBebidas_SelectedIndexChanged);
             // 
             // lblCantidadBebidas
             // 
@@ -158,15 +159,6 @@ namespace Bar_LES_UTN
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // lstPedidos
-            // 
-            this.lstPedidos.FormattingEnabled = true;
-            this.lstPedidos.ItemHeight = 15;
-            this.lstPedidos.Location = new System.Drawing.Point(12, 201);
-            this.lstPedidos.Name = "lstPedidos";
-            this.lstPedidos.Size = new System.Drawing.Size(757, 229);
-            this.lstPedidos.TabIndex = 15;
-            // 
             // btnAgregarPedido
             // 
             this.btnAgregarPedido.Location = new System.Drawing.Point(12, 158);
@@ -199,15 +191,23 @@ namespace Bar_LES_UTN
             this.chkBebidas.UseVisualStyleBackColor = true;
             this.chkBebidas.CheckedChanged += new System.EventHandler(this.chkBebidas_CheckedChanged);
             // 
+            // rTxtPedidos
+            // 
+            this.rTxtPedidos.Location = new System.Drawing.Point(12, 201);
+            this.rTxtPedidos.Name = "rTxtPedidos";
+            this.rTxtPedidos.Size = new System.Drawing.Size(757, 235);
+            this.rTxtPedidos.TabIndex = 19;
+            this.rTxtPedidos.Text = "";
+            // 
             // AbrirCuenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 496);
+            this.Controls.Add(this.rTxtPedidos);
             this.Controls.Add(this.chkBebidas);
             this.Controls.Add(this.chkComidas);
             this.Controls.Add(this.btnAgregarPedido);
-            this.Controls.Add(this.lstPedidos);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.txtCantBebidas);
@@ -244,9 +244,9 @@ namespace Bar_LES_UTN
         private System.Windows.Forms.TextBox txtCantBebidas;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.ListBox lstPedidos;
         private System.Windows.Forms.Button btnAgregarPedido;
         private System.Windows.Forms.CheckBox chkComidas;
         private System.Windows.Forms.CheckBox chkBebidas;
+        private System.Windows.Forms.RichTextBox rTxtPedidos;
     }
 }
