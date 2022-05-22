@@ -13,6 +13,11 @@ namespace EntidadesBar
         bool tieneAlcohol;
         EVersionBebida formato;
 
+        public Bebida()
+        :base()
+        {
+
+        }
 
         public Bebida(string nombre, int cantDisp, float precio, bool conAlcohol, EVersionBebida formato)
             : base(nombre, cantDisp, precio)

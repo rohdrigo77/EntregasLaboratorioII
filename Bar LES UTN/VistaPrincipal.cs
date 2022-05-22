@@ -115,9 +115,7 @@ namespace Bar_LES_UTN
         {
             argsMesaClick = e;
 
-            
-
-            if (cuentaCerrada ==false)
+            if (cuentaCerrada==false)
             {
                 btnCobrarYLiberarMesa.Enabled = false;
             }
@@ -137,29 +135,26 @@ namespace Bar_LES_UTN
 
         private void VerificarBoton(Button boton)
         {
+            ObtenerEstadoMesas();
+
             foreach (KeyValuePair<int, Button> item in botones)
             {
                 if (item.Value == boton)
                 {
 
-                    mesaSeleccionada = lesUTN.Mesas[item.Key - 1];
-
-                    ObtenerEstadoMesas();
-
-                    VerificarMesas();
-
+                    mesaSeleccionada = lesUTN.Mesas[item.Key - 1];           
                     break;
                 }
             }
+
+            VerificarMesa();
         }
 
-        private void VerificarMesas()
+        private void VerificarMesa()
         {
-            foreach (KeyValuePair<int, bool> mesa in disponibilidadMesas)
-            {
-                if (mesa.Value == false)
-                {
-                    
+
+                if (mesaSeleccionada.MesaOcupada == false)
+                {                   
 
                     if (MessageBox.Show("¿Desea abrir una cuenta a un cliente nuevo?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
@@ -172,16 +167,11 @@ namespace Bar_LES_UTN
                 else
                 {
                     InfoMesa(lesUTN.MostrarInformacionMesa(mesaSeleccionada.NumeroMesa));
-                    if (mesaSeleccionada.MesaOcupada)
-                    {
-                        btnCobrarYLiberarMesa.Enabled = true;
-                    }
+                    btnCobrarYLiberarMesa.Enabled = true;                   
 
                 }
 
-                break;
 
-            }
         }
 
 
@@ -227,16 +217,9 @@ namespace Bar_LES_UTN
 
                     CobrarMesa();
                     mesaSeleccionada.MesaOcupada = false;
-                    botones[mesaSeleccionada.NumeroMesa].BackColor = Color.Green;
-                    
-                
+                    botones[mesaSeleccionada.NumeroMesa].BackColor = Color.Green;                               
             }
-            else
-            {
 
-                btnMesaClick(botones[mesaSeleccionada.NumeroMesa],argsMesaClick);
-                btnCobrarYLiberarMesa.Enabled = false;
-            }
         }
 
 

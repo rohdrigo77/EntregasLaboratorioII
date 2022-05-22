@@ -21,6 +21,11 @@ namespace EntidadesBar
             lastId = 1;
         }
 
+        public Producto()
+        {
+
+        }
+
         protected Producto(string nombre, int existencias, float precio)
         {
             this.idProducto = lastId;

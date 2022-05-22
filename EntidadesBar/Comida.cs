@@ -25,6 +25,12 @@ namespace EntidadesBar
 
         List<EIngredientes> ingredientes;
 
+        public Comida()
+        :base()
+        {
+
+        }
+
         public Comida(string nombre, int cantDisp, float precio, List<EIngredientes> ingred) : base(nombre, cantDisp, precio)
         {
             this.ingredientes = ingred;

@@ -46,6 +46,7 @@ namespace Bar_LES_UTN
 
             cmbComidas.Enabled = false;
             cmbBebidas.Enabled = false;
+            cmbTamano.Enabled = false;
             lblCantidadComidas.Enabled = false;
             lblCantidadBebidas.Enabled = false;
             txtCantBebidas.Enabled = false;
@@ -119,7 +120,6 @@ namespace Bar_LES_UTN
                 }
             }
             
-
             return nombreAcomodado;
         }
 
@@ -132,67 +132,84 @@ namespace Bar_LES_UTN
 
         private void btnAgregarPedido_Click(object sender, EventArgs e)
         {
-            Comida comida = (Comida)cmbComidas.SelectedItem;
-            Bebida bebida = (Bebida)cmbBebidas.SelectedItem;
-            
+            Producto comida = new Comida();
 
-            if(!mesaCuenta.EsBarra)
+            Producto bebida = new Bebida();
+
+            try
             {
-                if (chkComidas.Checked)
-                { 
-                    try
+                if (!mesaCuenta.EsBarra)
+                {
+                    if (chkComidas.Checked)
                     {
+                        comida = bar.Inventario[cmbComidas.SelectedIndex];
+
+                      
 
                         if (int.TryParse(txtCantComidas.Text, out int cantComidas))
                         {
-                            
-                                if (bar.ProductosRestados(comida, cantComidas))
-                                {
-                                    
-                                    mesaCuenta.Cliente.Cuenta.PedidosDic.Add(comida.IdProducto, cantComidas);                                    
-                                    pedidosHastaAhora.AppendLine(comida.Nombre + "---------X" + cantComidas);
-                                                                     
-                                }
 
-                                if (chkBebidas.Checked)
-                                {
-                                    if (int.TryParse(txtCantBebidas.Text, out int cantBebidas))
-                                    {
+                            if (bar.ProductosRestados(comida, cantComidas))
+                            {
 
-                                        if (bar.ProductosRestados(bebida, cantBebidas))
-                                        {
+                                mesaCuenta.Cliente.Cuenta.PedidosDic.Add(comida.IdProducto, cantComidas);
+                                pedidosHastaAhora.AppendLine(comida.Nombre + "---------X" + cantComidas);
 
-                                            mesaCuenta.Cliente.Cuenta.PedidosDic.Add(bebida.IdProducto, cantBebidas);                                            
-                                            pedidosHastaAhora.AppendLine(bebida.Nombre + "----" + bebida.Formato + "-----X" + cantBebidas);
+                            }
+                        }
 
-                                            
-                                        }
-                                    }
-                                }
+                    }
+                }
 
-                                if (pedidoRealizado == false)
-                                {
-                                    pedidoRealizado = true;
-                                }
+                if (chkBebidas.Checked)
+                {
+
+                    bebida = bar.Inventario[cmbBebidas.SelectedIndex];
+                    
+
+                    if (cmbBebidas.SelectedIndex == 0)
+                    {
+                        if (cmbTamano.SelectedIndex == 1)
+                        {
+                            bebida = bar.Inventario[1];
+                        }
+                    }
+
+                    if (int.TryParse(txtCantBebidas.Text, out int cantBebidas))
+                    {
+
+                        if (bar.ProductosRestados(bebida, cantBebidas))
+                        {
+
+                            mesaCuenta.Cliente.Cuenta.PedidosDic.Add(bebida.IdProducto, cantBebidas);
+                            pedidosHastaAhora.AppendLine(bebida.Nombre + "----" + cmbTamano.Text + "-----X" + cantBebidas);
+
 
                         }
                     }
-                    catch (SinStockExcepcion ex)
-                    {
-                        MessageBox.Show(ex.Message, "Sin Stock", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    catch (SobreventaExcepcion ex)
-                    {
-                        MessageBox.Show(ex.Message, "Sobreventa", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Error General", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                 }
+
+                if (pedidoRealizado == false)
+                {
+                    pedidoRealizado = true;
+                }
+                
+
+            }           
+            catch (SinStockExcepcion ex)
+            {
+                MessageBox.Show(ex.Message, "Sin Stock", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            catch (SobreventaExcepcion ex)
+            {
+                MessageBox.Show(ex.Message, "Sobreventa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error General", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-                
+
 
         }
 
@@ -222,26 +239,28 @@ namespace Bar_LES_UTN
                 cmbBebidas.Enabled = true;
                 lblCantidadBebidas.Enabled = true;
                 txtCantBebidas.Enabled = true;
+                cmbTamano.Enabled = true;
             }
             else
             {
                 cmbBebidas.Enabled = false;
                 lblCantidadBebidas.Enabled = false;
                 txtCantBebidas.Enabled = false;
+                cmbTamano.Enabled = false;
             }
         }
 
         private void cmbBebidas_SelectedIndexChanged(object sender, EventArgs e)
         {
-   
             cmbBebidas.Text = Enum.GetName(typeof(EBebidas), cmbBebidas.SelectedIndex);
         }
 
         private void cmbTamano_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            cmbTamano.Text = Enum.GetName(typeof(EVersionBebida), cmbTamano.SelectedIndex);
-                     
+            cmbTamano.Enabled = true;
+            cmbTamano.Text = Enum.GetName(typeof(EVersionBebida), cmbTamano.SelectedIndex);                    
         }
+
+
     }
 }
