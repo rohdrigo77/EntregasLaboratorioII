@@ -140,10 +140,6 @@ namespace EntidadesBar
             return empleado;
         }
 
-
-
-       
-
         public string MostrarInformacionMesa(int idMesa)
         {
             Mesa auxMesa = null;
@@ -180,6 +176,7 @@ namespace EntidadesBar
                 if (p == producto)
                 {
                     productoRestado = p.RestarProductos(numeroARestar);
+                    break;
                 }
                 
             }
@@ -225,6 +222,25 @@ namespace EntidadesBar
 
                 return comidas;
             }
+        }
+
+        public int ObtenerProductoPorId(int idProducto)
+        {
+          
+            int index = -1;
+
+            for (int i = 0; i < inventario.Count ;i++)
+            {
+                if (inventario[i].IdProducto == idProducto)
+                {
+                    
+                    index = i;
+                    break;
+                }
+            }
+
+            return index;
+
         }
     }
 }

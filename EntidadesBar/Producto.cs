@@ -66,7 +66,7 @@ namespace EntidadesBar
         {
             bool productoRestado = false; 
 
-            if ((cantidadARestar - this.Existencias) >= 0)
+            if ((this.Existencias - cantidadARestar) >= 0)
             {
                 this.Existencias -= cantidadARestar;
 
@@ -76,7 +76,6 @@ namespace EntidadesBar
                 }
 
                 productoRestado = true;
-
 
             }
             else
@@ -161,6 +160,8 @@ namespace EntidadesBar
                 return this.existencias;
             }
         }
+
+
 
     }
 }

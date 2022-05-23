@@ -17,8 +17,8 @@
   "libraries": {
     "Excepciones/1.0.0": {
       "type": "project",
-      "path": "../ClassLibrary1/Excepciones.csproj",
-      "msbuildProject": "../ClassLibrary1/Excepciones.csproj"
+      "path": "../Excepciones/Excepciones.csproj",
+      "msbuildProject": "../Excepciones/Excepciones.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -58,8 +58,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\btz_p\\source\\repos\\ClassLibrary1\\Excepciones.csproj": {
-              "projectPath": "C:\\Users\\btz_p\\source\\repos\\ClassLibrary1\\Excepciones.csproj"
+            "C:\\Users\\btz_p\\source\\repos\\Excepciones\\Excepciones.csproj": {
+              "projectPath": "C:\\Users\\btz_p\\source\\repos\\Excepciones\\Excepciones.csproj"
             }
           }
         }

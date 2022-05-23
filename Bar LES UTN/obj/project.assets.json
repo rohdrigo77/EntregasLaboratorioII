@@ -35,8 +35,8 @@
     },
     "Excepciones/1.0.0": {
       "type": "project",
-      "path": "../ClassLibrary1/Excepciones.csproj",
-      "msbuildProject": "../ClassLibrary1/Excepciones.csproj"
+      "path": "../Excepciones/Excepciones.csproj",
+      "msbuildProject": "../Excepciones/Excepciones.csproj"
     }
   },
   "projectFileDependencyGroups": {

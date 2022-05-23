@@ -160,6 +160,8 @@ namespace Bar_LES_UTN
                     {
                         abrirCuenta = new AbrirCuenta(mesaSeleccionada.NumeroMesa, lesUTN);
                         abrirCuenta.ShowDialog();
+                        disponibilidadMesas[mesaSeleccionada.NumeroMesa] = mesaSeleccionada.MesaOcupada;
+                        ObtenerEstadoMesas();
                     }          
                    
 

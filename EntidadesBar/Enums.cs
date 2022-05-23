@@ -8,17 +8,17 @@ namespace EntidadesBar
 {
     public enum EPermisos
     {
-        Empleado,
+        Empleado= 0,
         Administrador
     }
 
     public enum EVersionBebida
     {
-        BotellaDosLitros = 2000,
-        BotellaLitro = 1000,
-        LataGrande = 355,
-        LataMediana = 300,
-        LataChica = 255
+        BotellaDosLitros = 0,
+        BotellaLitro,
+        LataGrande,
+        LataMediana,
+        LataChica
     }
 
     public enum EBebidas
@@ -30,7 +30,7 @@ namespace EntidadesBar
 
     public enum EComidas
     {
-        HamburCompleta,
+        HamburCompleta= 0,
         HamburSuprema,
         Entradita
     }

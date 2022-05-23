@@ -213,9 +213,9 @@ namespace Bar_LES_UTN
             // cmbTamano
             // 
             this.cmbTamano.FormattingEnabled = true;
-            this.cmbTamano.Location = new System.Drawing.Point(599, 129);
+            this.cmbTamano.Location = new System.Drawing.Point(590, 131);
             this.cmbTamano.Name = "cmbTamano";
-            this.cmbTamano.Size = new System.Drawing.Size(62, 23);
+            this.cmbTamano.Size = new System.Drawing.Size(71, 23);
             this.cmbTamano.TabIndex = 21;
             this.cmbTamano.SelectedIndexChanged += new System.EventHandler(this.cmbTamano_SelectedIndexChanged);
             // 

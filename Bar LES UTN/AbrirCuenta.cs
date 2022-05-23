@@ -19,8 +19,10 @@ namespace Bar_LES_UTN
         Bar bar;
         Mesa mesaCuenta;
         bool nombreVerificado = false;
-        bool pedidoRealizado = false;
+        bool comidaPedida = false;
+        bool bebidaPedida = false;
         StringBuilder pedidosHastaAhora = new StringBuilder();
+        Dictionary<int, int> pedidosHasta = new Dictionary<int, int>();
 
         private AbrirCuenta()
         {
@@ -30,12 +32,11 @@ namespace Bar_LES_UTN
 
         public AbrirCuenta(int nroMesa, Bar barActual) : this()
         {
-            mesaCuenta = barActual.Mesas[nroMesa+1];
+            mesaCuenta = barActual.Mesas[nroMesa-1];
             bar = barActual;
             cmbBebidas.DataSource = Enum.GetValues(typeof(EBebidas));
             cmbComidas.DataSource = Enum.GetValues(typeof(EComidas));
             cmbTamano.DataSource = Enum.GetValues(typeof(EVersionBebida));
-            pedidosHastaAhora.Clear();
             pedidosHastaAhora.Append("***PEDIDO***");
             rTxtPedidos.Text = pedidosHastaAhora.ToString();
 
@@ -61,55 +62,112 @@ namespace Bar_LES_UTN
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             string nombreCliente;
+            int index; 
+            DialogResult resultado;
+            StringBuilder pedidoAux;
 
             nombreCliente = txtNombre.Text.Trim() + " " + txtApellido.Text.Trim();
-
             nombreCliente = AcomodarNombre(nombreCliente);
 
-            if (nombreVerificado && pedidoRealizado)
+            try
             {
-                if(MessageBox.Show(pedidosHastaAhora.ToString(),"Confirmar Pedido",MessageBoxButtons.OKCancel,MessageBoxIcon.Information) == DialogResult.OK)
+                if (nombreVerificado)
                 {
-                    mesaCuenta.Cliente.Nombre = nombreCliente;
-                   
+
+                    pedidoAux = new StringBuilder();
+                    pedidoAux.AppendLine("Cliente: " + nombreCliente);
+                    pedidoAux.AppendLine(pedidosHastaAhora.ToString());
+                    pedidosHastaAhora = pedidoAux;
+
+                    resultado = MessageBox.Show(pedidosHastaAhora.ToString(), "Confirmar Pedido", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        if (mesaCuenta.Cliente is null)
+                        {
+                            mesaCuenta.Cliente = new Cliente(mesaCuenta.NumeroMesa,nombreCliente,new Cuenta());
+                            mesaCuenta.MesaOcupada = true;
+                            MessageBox.Show("Cliente cargado exitosamente!", "Cuenta Cargada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
+                        }
+
+                        if (comidaPedida || bebidaPedida)
+                        {
+
+                            foreach (KeyValuePair<int, int> pedidoIdCantidad in pedidosHasta)
+                            {
+
+                                index = bar.ObtenerProductoPorId(pedidoIdCantidad.Key);
+
+                                if (index >= 0)
+                                {
+                                    mesaCuenta.Cliente.Cuenta.PedidosList.Add(bar.Inventario[index]);
+                                    mesaCuenta.Cliente.Cuenta.PedidosDic.Add(index, pedidoIdCantidad.Value);
+                                }
+
+                            }
+
+
+                        }                  
+
+                    }
+                    else
+                    {
+                        if (resultado == DialogResult.No)
+                        {
+                            mesaCuenta.Cliente.Nombre = "";
+                            mesaCuenta.Cliente.Cuenta.PedidosList.Clear();
+                            mesaCuenta.Cliente.Cuenta.PedidosDic.Clear();
+                        }
+                        else
+                        {
+                            this.Close();
+                        }
+
+                    }
                 }
                 else
                 {
-                    mesaCuenta.Cliente.Cuenta.PedidosList.Clear();
-                    mesaCuenta.Cliente.Cuenta.PedidosDic.Clear();
+                    throw new NombreApellidoInvalidosExcepcion("Datos ingresados inválidos");
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+           
 
 
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         public string AcomodarNombre(string nombreAAcomodar)
         {
             string nombreAcomodado = nombreAAcomodar;
+            int indexEspacio = -1;
 
-            if (Regex.IsMatch(nombreAcomodado, "[^a-zA-Z0-9\x20]"))
+            if (Regex.IsMatch(nombreAcomodado, @"[\w\s\w]"))              
             {
-                for (int i = 0; i < nombreAAcomodar.Length; i++)
+                nombreVerificado = true;
+                
+                for (int i = 0; i < nombreAcomodado.Length; i++)
                 {
-                    if (i == 0 || nombreAAcomodar[i - 1].Equals(' '))
+                    if (nombreAcomodado[i].Equals(' '))
                     {
-                        char.ToUpper(nombreAAcomodar[i]);
-                    }
-                    else if (!nombreAAcomodar[i].Equals(' '))
-                    {
-                        char.ToLower(nombreAAcomodar[i]);
+                        indexEspacio = i;
                     }
                 }
-                nombreVerificado = true;
+
+                nombreAcomodado = char.ToUpper(nombreAAcomodar[0]) + nombreAAcomodar.Substring(1, indexEspacio) + char.ToUpper(nombreAAcomodar[indexEspacio + 1]) + nombreAAcomodar.Substring(indexEspacio + 2);
             }
             else
             {
-                if(MessageBox.Show("Nombre o Apellido ingresados no válidos, ingrese letras solamente.", "Error", MessageBoxButtons.OKCancel,MessageBoxIcon.Error) == DialogResult.OK)
+                if (MessageBox.Show("Nombre o Apellido ingresados no válidos, ingrese letras solamente.", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error) == DialogResult.OK)
                 {
                     txtNombre.Text = "";
                     txtApellido.Text = "";
@@ -119,7 +177,7 @@ namespace Bar_LES_UTN
                     this.Close();
                 }
             }
-            
+
             return nombreAcomodado;
         }
 
@@ -133,30 +191,71 @@ namespace Bar_LES_UTN
         private void btnAgregarPedido_Click(object sender, EventArgs e)
         {
             Producto comida = new Comida();
-
             Producto bebida = new Bebida();
+
+            int idProducto = 0;
 
             try
             {
+                pedidosHasta.Clear();
+                pedidosHastaAhora.Clear();
+
                 if (!mesaCuenta.EsBarra)
                 {
                     if (chkComidas.Checked)
                     {
-                        comida = bar.Inventario[cmbComidas.SelectedIndex];
-
-                      
-
-                        if (int.TryParse(txtCantComidas.Text, out int cantComidas))
+                        
+                        switch(cmbComidas.SelectedIndex)
                         {
+                            case 0:
+                                idProducto = 15;
+                                break;
+                            case 1:
+                                idProducto = 16;
+                                break;
+                            default:
+                                idProducto = 17;
+                                break;
+                        }
 
-                            if (bar.ProductosRestados(comida, cantComidas))
+                        if (idProducto > 0)
+                        {
+                            comida = bar.Inventario[bar.ObtenerProductoPorId(idProducto)];
+
+                            if (int.TryParse(txtCantComidas.Text, out int cantComidas))
                             {
+                                if (cantComidas > 0)
+                                {
+                                    if (bar.ProductosRestados(comida, cantComidas))
+                                    {
 
-                                mesaCuenta.Cliente.Cuenta.PedidosDic.Add(comida.IdProducto, cantComidas);
-                                pedidosHastaAhora.AppendLine(comida.Nombre + "---------X" + cantComidas);
+                                        this.pedidosHasta.Add(comida.IdProducto, cantComidas);
+                                        pedidosHastaAhora.AppendLine(comida.Nombre + "---------X" + cantComidas);
+
+                                        if (comidaPedida == false)
+                                        {
+                                            idProducto = 0;
+                                            comidaPedida = true;
+                                        }
+
+                                    }
+                                }
+                                else
+                                {
+                                    throw new CeroCantidadExcepcion("Ingrese cantidad válida.");
+                                }
+
 
                             }
                         }
+                        else
+                        {
+                            throw new SinStockExcepcion("No hay stock de la comida seleccionada. Elija otra comida y/o avise al Administrador.");
+                        }
+
+                        
+
+                        
 
                     }
                 }
@@ -164,36 +263,77 @@ namespace Bar_LES_UTN
                 if (chkBebidas.Checked)
                 {
 
-                    bebida = bar.Inventario[cmbBebidas.SelectedIndex];
-                    
-
-                    if (cmbBebidas.SelectedIndex == 0)
+                    switch (cmbBebidas.SelectedIndex)
                     {
-                        if (cmbTamano.SelectedIndex == 1)
+                        case 0:
+                            if ((EVersionBebida)cmbTamano.SelectedItem == EVersionBebida.BotellaDosLitros)
+                            {
+                                idProducto = 11;
+
+                            }
+                            else
+                            {
+                                if ((EVersionBebida)cmbTamano.SelectedItem == EVersionBebida.BotellaLitro)
+                                {
+                                    idProducto=12;
+                                    bebida = bar.Inventario[1];
+                                }
+
+                            }                          
+                            break;
+                        case 1:
+                            if ((EVersionBebida)cmbTamano.SelectedItem == EVersionBebida.LataGrande)
+                            {
+                                idProducto = 13;
+                            }
+                            break;
+                        default:
+                            if ((EVersionBebida)cmbTamano.SelectedItem == EVersionBebida.BotellaLitro)
+                            {
+                                idProducto = 14;
+                            }
+                            break;
+                    }
+ 
+                    if (idProducto > 0)
+                    {
+
+                        bebida = bar.Inventario[bar.ObtenerProductoPorId(idProducto)];
+
+
+                        if (int.TryParse(txtCantBebidas.Text, out int cantBebidas))
                         {
-                            bebida = bar.Inventario[1];
+                            if (cantBebidas > 0)
+                            {
+
+                                if (bar.ProductosRestados(bebida, cantBebidas))
+                                {
+
+                                    this.pedidosHasta.Add(bebida.IdProducto, cantBebidas);
+                                    pedidosHastaAhora.AppendLine(bebida.Nombre + "----" + cmbTamano.Text + "-----X" + cantBebidas);
+                                
+                                    if (bebidaPedida == false)
+                                    {
+                                        bebidaPedida = true;
+                                        idProducto = 0;
+                                    }
+
+                                }
+                                else
+                                {
+                                    throw new CeroCantidadExcepcion("Ingrese cantidad correcta.");
+                                }
+                            }
                         }
                     }
-
-                    if (int.TryParse(txtCantBebidas.Text, out int cantBebidas))
+                    else
                     {
-
-                        if (bar.ProductosRestados(bebida, cantBebidas))
-                        {
-
-                            mesaCuenta.Cliente.Cuenta.PedidosDic.Add(bebida.IdProducto, cantBebidas);
-                            pedidosHastaAhora.AppendLine(bebida.Nombre + "----" + cmbTamano.Text + "-----X" + cantBebidas);
-
-
-                        }
+                        throw new SinStockExcepcion("No hay stock de la bebida en el tamaño seleccionado. Elija otro tamaño y/o avise al Administrador.");
                     }
-                }
 
-                if (pedidoRealizado == false)
-                {
-                    pedidoRealizado = true;
-                }
-                
+                    rTxtPedidos.Text = pedidosHastaAhora.ToString();
+
+                }      
 
             }           
             catch (SinStockExcepcion ex)
@@ -204,12 +344,14 @@ namespace Bar_LES_UTN
             {
                 MessageBox.Show(ex.Message, "Sobreventa", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            catch (CeroCantidadExcepcion ex)
+            {
+                MessageBox.Show(ex.Message, "Cantidad inválida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error General", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
 
         }
 
@@ -257,10 +399,8 @@ namespace Bar_LES_UTN
 
         private void cmbTamano_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmbTamano.Enabled = true;
-            cmbTamano.Text = Enum.GetName(typeof(EVersionBebida), cmbTamano.SelectedIndex);                    
+            cmbTamano.Text = Enum.GetName(typeof(EVersionBebida), cmbTamano.SelectedIndex);
+
         }
-
-
     }
 }
