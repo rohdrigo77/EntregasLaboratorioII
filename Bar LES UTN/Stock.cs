@@ -7,24 +7,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EntidadesBar;
 
 namespace Bar_LES_UTN
 {
     public partial class Stock : Form
     {
-        public Stock()
+        AgregarProducto agregarProducto;
+        List<Producto> listaProductos;
+        
+        public Stock(List<Producto> inventarioStock, EPermisos permisos)
         {
             InitializeComponent();
-        }
-
-        private void btnOrdenarStock_Click(object sender, EventArgs e)
-        {
-
+            listaProductos=inventarioStock;
+            listaProductos.Sort();
+            dtgStock.DataSource = listaProductos;
+            
+            if (!(permisos == EPermisos.Administrador))
+            {
+                btnAgregarProducto.Enabled = false;
+            }
+            
         }
 
         private void btnAgregarProducto_Click(object sender, EventArgs e)
         {
-
+            agregarProducto = new AgregarProducto(listaProductos);
         }
+
+
+
     }
 }

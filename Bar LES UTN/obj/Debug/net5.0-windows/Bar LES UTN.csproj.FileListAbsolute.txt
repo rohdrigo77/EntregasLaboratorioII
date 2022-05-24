@@ -25,3 +25,4 @@ C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\EntidadesBar.pd
 C:\Users\btz_p\source\repos\Bar LES UTN\bin\Debug\net5.0-windows\Excepciones.pdb
 C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar LES UTN.csproj.CopyComplete
 C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\refint\Bar LES UTN.dll
+C:\Users\btz_p\source\repos\Bar LES UTN\obj\Debug\net5.0-windows\Bar_LES_UTN.AgregarProducto.resources

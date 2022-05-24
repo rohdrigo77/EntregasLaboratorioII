@@ -16,6 +16,7 @@ namespace Bar_LES_UTN
         Empleado empleadoLogueado;
         Mesa mesaSeleccionada;
         AbrirCuenta abrirCuenta;
+        Stock stock;
         Dictionary<int, Button> botones;
         Dictionary<int, bool> disponibilidadMesas;
         Bar lesUTN;
@@ -27,6 +28,8 @@ namespace Bar_LES_UTN
             InitializeComponent();
             botones = new Dictionary<int, Button>();
             disponibilidadMesas = new Dictionary<int, bool>();
+            btnCobrarYLiberarMesa.Enabled = false;
+            
         }
 
         public VistaPrincipal(Empleado empleadoActual, Bar barLogueado)
@@ -38,12 +41,13 @@ namespace Bar_LES_UTN
             lesUTN = barLogueado;
             CargarMesas();
             ObtenerEstadoMesas();
-            btnCobrarYLiberarMesa.Enabled = false;
+            
 
             if (empleadoLogueado.Permisos == EPermisos.Administrador)
             {
                 lblEmpleadoAdmin.Visible = true;
                 this.BackColor = Color.Yellow;
+
             }
 
 
@@ -128,9 +132,7 @@ namespace Bar_LES_UTN
         {
             Button auxBtn = (Button)click;
 
-            VerificarBoton(auxBtn);
-
-            
+            VerificarBoton(auxBtn);            
         }
 
         private void VerificarBoton(Button boton)
@@ -153,39 +155,32 @@ namespace Bar_LES_UTN
         private void VerificarMesa()
         {
 
-                if (mesaSeleccionada.MesaOcupada == false)
-                {                   
+            if (mesaSeleccionada.MesaOcupada == false)
+            {                   
 
-                    if (MessageBox.Show("¿Desea abrir una cuenta a un cliente nuevo?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                    {
-                        abrirCuenta = new AbrirCuenta(mesaSeleccionada.NumeroMesa, lesUTN);
-                        abrirCuenta.ShowDialog();
-                        disponibilidadMesas[mesaSeleccionada.NumeroMesa] = mesaSeleccionada.MesaOcupada;
-                        ObtenerEstadoMesas();
-                    }          
-                   
-
-                }
-                else
+                if (MessageBox.Show("¿Desea abrir una cuenta a un cliente nuevo?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    InfoMesa(lesUTN.MostrarInformacionMesa(mesaSeleccionada.NumeroMesa));
-                    btnCobrarYLiberarMesa.Enabled = true;                   
+                    abrirCuenta = new AbrirCuenta(mesaSeleccionada.NumeroMesa, lesUTN);
+                    abrirCuenta.ShowDialog();
+                    disponibilidadMesas[mesaSeleccionada.NumeroMesa] = mesaSeleccionada.MesaOcupada;
+                                           
+                }          
+                                                       
+            }
+            else
+            {
+                btnCobrarYLiberarMesa.Enabled = true;
+                InfoMesa(lesUTN.MostrarInformacionMesa(mesaSeleccionada.NumeroMesa));
+            }
 
-                }
-
+            ObtenerEstadoMesas();
 
         }
-
-
-
 
         private void btn_salir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-
-
 
         private void CobrarMesa()
         {
@@ -202,7 +197,6 @@ namespace Bar_LES_UTN
                 mesaSeleccionada.Cliente.Cuenta.CuentaCerrada = true;
                 mesaSeleccionada.MesaOcupada = false;
                 LiberarMesa();
-                
             }
         }
 
@@ -218,8 +212,11 @@ namespace Bar_LES_UTN
 
 
                     CobrarMesa();
-                    mesaSeleccionada.MesaOcupada = false;
-                    botones[mesaSeleccionada.NumeroMesa].BackColor = Color.Green;                               
+                    mesaSeleccionada.MesaOcupada = false;               
+                    ObtenerEstadoMesas();
+                    InfoMesa(lesUTN.MostrarInformacionMesa(mesaSeleccionada.NumeroMesa)); 
+                    btnCobrarYLiberarMesa.Enabled = false;
+
             }
 
         }
@@ -227,7 +224,7 @@ namespace Bar_LES_UTN
 
         private void btnStock_Click(object sender, EventArgs e)
         {
-
+            stock = new Stock(lesUTN.Inventario ,empleadoLogueado.Permisos);
         }
 
         private void btnEmpleados_Click(object sender, EventArgs e)

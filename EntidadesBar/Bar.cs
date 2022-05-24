@@ -224,23 +224,6 @@ namespace EntidadesBar
             }
         }
 
-        public int ObtenerProductoPorId(int idProducto)
-        {
-          
-            int index = -1;
 
-            for (int i = 0; i < inventario.Count ;i++)
-            {
-                if (inventario[i].IdProducto == idProducto)
-                {
-                    
-                    index = i;
-                    break;
-                }
-            }
-
-            return index;
-
-        }
     }
 }

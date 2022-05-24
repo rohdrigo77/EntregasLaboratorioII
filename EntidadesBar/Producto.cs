@@ -96,19 +96,7 @@ namespace EntidadesBar
             return !(p1 == id);
         }
 
-        public static Producto BuscarProducto(List<Producto> lista, int id)
-        {
-            foreach (Producto item in lista)
-            {
-                if (item == id)
-                {
-                    return item;
-                }
-            }
-                
-
-            return null;
-        }
+        
 
         public static List<Producto> DevolverProductos(List<Producto> lista, Type tipoProducto)
         {
@@ -122,6 +110,7 @@ namespace EntidadesBar
 
                 }
             }
+
             return aux;
         }
 
@@ -139,6 +128,26 @@ namespace EntidadesBar
 
             return aux;
         }
+
+        public static int ObtenerProductoPorId(List<Producto> listaProducto, int idProducto)
+        {
+
+            int index = -1;
+
+            for (int i = 0; i < listaProducto.Count; i++)
+            {
+                if (listaProducto[i].IdProducto == idProducto)
+                {
+
+                    index = i;
+                    break;
+                }
+            }
+
+            return index;
+
+        }
+
 
 
         public int IdProducto

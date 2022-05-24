@@ -53,6 +53,7 @@ namespace Bar_LES_UTN
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
+            this.lblNombre.ForeColor = System.Drawing.Color.Lime;
             this.lblNombre.Location = new System.Drawing.Point(12, 53);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(54, 15);
@@ -69,6 +70,7 @@ namespace Bar_LES_UTN
             // lblApellido
             // 
             this.lblApellido.AutoSize = true;
+            this.lblApellido.ForeColor = System.Drawing.Color.Lime;
             this.lblApellido.Location = new System.Drawing.Point(12, 79);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(54, 15);
@@ -85,6 +87,7 @@ namespace Bar_LES_UTN
             // lblMensaje
             // 
             this.lblMensaje.AutoSize = true;
+            this.lblMensaje.ForeColor = System.Drawing.Color.Lime;
             this.lblMensaje.Location = new System.Drawing.Point(12, 9);
             this.lblMensaje.Name = "lblMensaje";
             this.lblMensaje.Size = new System.Drawing.Size(146, 15);
@@ -103,6 +106,7 @@ namespace Bar_LES_UTN
             // lblCantidadComidas
             // 
             this.lblCantidadComidas.AutoSize = true;
+            this.lblCantidadComidas.ForeColor = System.Drawing.Color.Lime;
             this.lblCantidadComidas.Location = new System.Drawing.Point(667, 108);
             this.lblCantidadComidas.Name = "lblCantidadComidas";
             this.lblCantidadComidas.Size = new System.Drawing.Size(58, 15);
@@ -128,6 +132,7 @@ namespace Bar_LES_UTN
             // lblCantidadBebidas
             // 
             this.lblCantidadBebidas.AutoSize = true;
+            this.lblCantidadBebidas.ForeColor = System.Drawing.Color.Lime;
             this.lblCantidadBebidas.Location = new System.Drawing.Point(667, 137);
             this.lblCantidadBebidas.Name = "lblCantidadBebidas";
             this.lblCantidadBebidas.Size = new System.Drawing.Size(58, 15);
@@ -174,6 +179,7 @@ namespace Bar_LES_UTN
             // chkComidas
             // 
             this.chkComidas.AutoSize = true;
+            this.chkComidas.ForeColor = System.Drawing.Color.Lime;
             this.chkComidas.Location = new System.Drawing.Point(12, 108);
             this.chkComidas.Name = "chkComidas";
             this.chkComidas.Size = new System.Drawing.Size(76, 19);
@@ -185,6 +191,7 @@ namespace Bar_LES_UTN
             // chkBebidas
             // 
             this.chkBebidas.AutoSize = true;
+            this.chkBebidas.ForeColor = System.Drawing.Color.Lime;
             this.chkBebidas.Location = new System.Drawing.Point(12, 133);
             this.chkBebidas.Name = "chkBebidas";
             this.chkBebidas.Size = new System.Drawing.Size(70, 19);
@@ -204,6 +211,7 @@ namespace Bar_LES_UTN
             // lblTamano
             // 
             this.lblTamano.AutoSize = true;
+            this.lblTamano.ForeColor = System.Drawing.Color.Lime;
             this.lblTamano.Location = new System.Drawing.Point(541, 137);
             this.lblTamano.Name = "lblTamano";
             this.lblTamano.Size = new System.Drawing.Size(52, 15);
@@ -223,6 +231,7 @@ namespace Bar_LES_UTN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(781, 496);
             this.Controls.Add(this.cmbTamano);
             this.Controls.Add(this.lblTamano);
@@ -244,7 +253,7 @@ namespace Bar_LES_UTN
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.lblNombre);
             this.Name = "AbrirCuenta";
-            this.Text = "Abrir Cuenta";
+            this.Text = "Bar LES UTN - Bogado Jorge Rodrigo - Abrir Cuenta";
             this.Load += new System.EventHandler(this.AbrirCuenta_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

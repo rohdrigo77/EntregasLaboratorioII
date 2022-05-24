@@ -97,7 +97,7 @@ namespace Bar_LES_UTN
                             foreach (KeyValuePair<int, int> pedidoIdCantidad in pedidosHasta)
                             {
 
-                                index = bar.ObtenerProductoPorId(pedidoIdCantidad.Key);
+                                index = Producto.ObtenerProductoPorId(bar.Inventario, pedidoIdCantidad.Key);
 
                                 if (index >= 0)
                                 {
@@ -220,7 +220,7 @@ namespace Bar_LES_UTN
 
                         if (idProducto > 0)
                         {
-                            comida = bar.Inventario[bar.ObtenerProductoPorId(idProducto)];
+                            comida = bar.Inventario[Producto.ObtenerProductoPorId(bar.Inventario, idProducto)];
 
                             if (int.TryParse(txtCantComidas.Text, out int cantComidas))
                             {
@@ -298,7 +298,7 @@ namespace Bar_LES_UTN
                     if (idProducto > 0)
                     {
 
-                        bebida = bar.Inventario[bar.ObtenerProductoPorId(idProducto)];
+                        bebida = bar.Inventario[Producto.ObtenerProductoPorId(bar.Inventario,idProducto)];
 
 
                         if (int.TryParse(txtCantBebidas.Text, out int cantBebidas))
