@@ -25,7 +25,7 @@ namespace Bar_LES_UTN
         bool cuentaCerrada=false;
 
         /// <summary>
-        /// 
+        /// Constructor VistaPrincipal
         /// </summary>
         private VistaPrincipal()
         {
@@ -38,7 +38,7 @@ namespace Bar_LES_UTN
         }
 
         /// <summary>
-        /// 
+        /// Constructor VistaPrincipal que recibe el empleado logueado y el bar
         /// </summary>
         /// <param name="empleadoActual"></param>
         /// <param name="barLogueado"></param>
@@ -61,18 +61,10 @@ namespace Bar_LES_UTN
 
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void VistaPrincipal_Load(object sender, EventArgs e)
-        {
 
-        }
 
         /// <summary>
-        /// 
+        /// Agrega al diccionario de botones los pares de clave valor segun numero de boton y el boton presionado
         /// </summary>
         private void CargarMesas()
         {
@@ -101,7 +93,7 @@ namespace Bar_LES_UTN
         }
 
         /// <summary>
-        /// 
+        /// Metodo que puebla el diccionario de disponibilidadMesas segun el numero de mesa y si esta o no ocupada, y modifica el color de los botones segun los datos anteriores
         /// </summary>
         private void ObtenerEstadoMesas()
         {
@@ -127,7 +119,7 @@ namespace Bar_LES_UTN
         }
 
         /// <summary>
-        /// 
+        ///  Metodo que puebla rTxtMesas.Text segun el string recibido
         /// </summary>
         /// <param name="info"></param>
         private void InfoMesa(string info)
@@ -136,7 +128,7 @@ namespace Bar_LES_UTN
         }
 
         /// <summary>
-        /// 
+        /// Manejador btnMesaClick que habilita botones segun booleano y muestra el estado de la mesa
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -154,7 +146,7 @@ namespace Bar_LES_UTN
         }
 
         /// <summary>
-        /// 
+        /// Metodo que Verifica el objeto presionado
         /// </summary>
         /// <param name="click"></param>
         private void VerificarBotonYMesa(object click)
@@ -165,7 +157,7 @@ namespace Bar_LES_UTN
         }
 
         /// <summary>
-        /// 
+        /// Metodo que Verifica el boton presionado y la mesa relacionada
         /// </summary>
         /// <param name="boton"></param>
         private void VerificarBoton(Button boton)
@@ -186,7 +178,7 @@ namespace Bar_LES_UTN
         }
 
         /// <summary>
-        /// 
+        /// Metodo que verifica si la mesa esta ocupada o no y actua en consecuencia, permitiendo abrir una nueva cuenta, o mostrando los datos de la ya creada
         /// </summary>
         private void VerificarMesa()
         {
