@@ -20,9 +20,10 @@ namespace Bar_LES_UTN
         /// Constructor Lista_Empleados
         /// </summary>
         /// <param name="Empleados"></param>
-        public Lista_Empleados(List<Empleado> Empleados)
+        public Lista_Empleados(List<Empleado> empleados)
         {
             InitializeComponent();
+            dtgEmpleados.DataSource = empleados;
         }
 
         /// <summary>

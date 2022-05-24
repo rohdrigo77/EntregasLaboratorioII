@@ -280,6 +280,8 @@ namespace Bar_LES_UTN
         private void btnEmpleados_Click(object sender, EventArgs e)
         { 
             empleados = new Lista_Empleados(lesUTN.Empleados);
+            empleados.Show();
+            
         }
 
     }
