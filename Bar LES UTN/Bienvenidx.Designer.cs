@@ -29,7 +29,6 @@ namespace Bar_LES_UTN
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtDNI = new System.Windows.Forms.TextBox();
             this.lblDni = new System.Windows.Forms.Label();
             this.lblPass = new System.Windows.Forms.Label();
             this.txtPass = new System.Windows.Forms.TextBox();
@@ -37,14 +36,10 @@ namespace Bar_LES_UTN
             this.lblBar = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.cmbUsuario = new System.Windows.Forms.ComboBox();
+            this.txtDNI = new System.Windows.Forms.TextBox();
+            this.lblElegirUsuario = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // txtDNI
-            // 
-            this.txtDNI.Location = new System.Drawing.Point(235, 174);
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(168, 23);
-            this.txtDNI.TabIndex = 0;
             // 
             // lblDni
             // 
@@ -117,12 +112,41 @@ namespace Bar_LES_UTN
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // cmbUsuario
+            // 
+            this.cmbUsuario.FormattingEnabled = true;
+            this.cmbUsuario.Location = new System.Drawing.Point(255, 135);
+            this.cmbUsuario.Name = "cmbUsuario";
+            this.cmbUsuario.Size = new System.Drawing.Size(148, 23);
+            this.cmbUsuario.TabIndex = 8;
+            this.cmbUsuario.SelectedIndexChanged += new System.EventHandler(this.cmbUsuario_SelectedIndexChanged);
+            // 
+            // txtDNI
+            // 
+            this.txtDNI.Location = new System.Drawing.Point(235, 174);
+            this.txtDNI.Name = "txtDNI";
+            this.txtDNI.Size = new System.Drawing.Size(168, 23);
+            this.txtDNI.TabIndex = 0;
+            // 
+            // lblElegirUsuario
+            // 
+            this.lblElegirUsuario.AutoSize = true;
+            this.lblElegirUsuario.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblElegirUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.lblElegirUsuario.Location = new System.Drawing.Point(110, 135);
+            this.lblElegirUsuario.Name = "lblElegirUsuario";
+            this.lblElegirUsuario.Size = new System.Drawing.Size(139, 23);
+            this.lblElegirUsuario.TabIndex = 9;
+            this.lblElegirUsuario.Text = "Elegir Usuario:";
+            // 
             // Bienvenidx
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(519, 397);
+            this.Controls.Add(this.lblElegirUsuario);
+            this.Controls.Add(this.cmbUsuario);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.lblBar);
@@ -142,8 +166,6 @@ namespace Bar_LES_UTN
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.Label lblDni;
         private System.Windows.Forms.Label lblPass;
         private System.Windows.Forms.TextBox txtPass;
@@ -151,5 +173,8 @@ namespace Bar_LES_UTN
         private System.Windows.Forms.Label lblBar;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.ComboBox cmbUsuario;
+        private System.Windows.Forms.TextBox txtDNI;
+        private System.Windows.Forms.Label lblElegirUsuario;
     }
 }

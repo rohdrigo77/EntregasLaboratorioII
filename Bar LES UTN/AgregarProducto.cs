@@ -40,7 +40,7 @@ namespace Bar_LES_UTN
         }
 
         /// <summary>
-        /// 
+        /// Manejador de cmbFormato para indicar la medida de la bebida a cargar
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -49,6 +49,11 @@ namespace Bar_LES_UTN
 
         }
 
+        /// <summary>
+        /// Manejadro de btnAgregarIngrediente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAgregarIngrediente_Click(object sender, EventArgs e)
         { }/*
             Producto comida = new Comida();

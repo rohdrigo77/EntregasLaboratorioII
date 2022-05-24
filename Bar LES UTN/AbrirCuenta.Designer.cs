@@ -254,7 +254,6 @@ namespace Bar_LES_UTN
             this.Controls.Add(this.lblNombre);
             this.Name = "AbrirCuenta";
             this.Text = "Bar LES UTN - Bogado Jorge Rodrigo - Abrir Cuenta";
-            this.Load += new System.EventHandler(this.AbrirCuenta_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

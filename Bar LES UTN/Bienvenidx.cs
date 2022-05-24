@@ -14,16 +14,30 @@ namespace Bar_LES_UTN
     public partial class Bienvenidx : Form
     {
         Bar barSinLoguear;
+        List<string> nombresUsuario = new List<string>();
         public Bienvenidx()
         {
             InitializeComponent();
             barSinLoguear = new Bar();
+
+            foreach (Empleado empleado in barSinLoguear.Empleados)
+            {
+                nombresUsuario.Add(empleado.Nombre);
+
+            }
+
+            cmbUsuario.DataSource = nombresUsuario;
+
         }
 
+        /// <summary>
+        /// Manejador btnAceptar que verifica datos ingresados y permite o no el logueo de usuarios
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-  //          try
-    //        {
+
                 if (string.IsNullOrEmpty(txtDNI.Text) || string.IsNullOrEmpty(txtPass.Text))
                 {
                     MessageBox.Show("No ingresó datos!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -39,19 +53,14 @@ namespace Bar_LES_UTN
                             VistaPrincipal mp = new VistaPrincipal(empleadoLogueado, barSinLoguear);
                             mp.Show();
                             this.Hide();
-                        }
-                                                      
+                        }                                                     
                     }
                     else
                     {
                         MessageBox.Show("Datos inexistentes o ingresó carácteres inválidos.", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
                     }
                 }
-                /*            }
-                          catch (Exception ex)
-                           {
-                               MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                           }*/
+
 
             }
 
@@ -60,7 +69,24 @@ namespace Bar_LES_UTN
             Application.Exit();
         }
 
+        private void cmbUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
 
-       
+            txtDNI.Text = (barSinLoguear.Empleados[cmbUsuario.SelectedIndex]).Dni.ToString();
+            
+            switch ((barSinLoguear.Empleados[cmbUsuario.SelectedIndex]).Dni)
+            {
+                case 37865167:
+                    txtPass.Text = "123456";
+                    break;
+                case 33112312:
+                    txtPass.Text = "ruf123";
+                    break;
+                case 25097323:
+                    txtPass.Text = "MadeINLanus";
+                    break;
+            }
+        }
     }
 }

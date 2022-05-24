@@ -224,6 +224,14 @@ namespace EntidadesBar
             }
         }
 
+        public List<Empleado> Empleados
+        {
+            get
+            {
+                return listaEmpleados;
+            }
+        }
+
 
     }
 }
