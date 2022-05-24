@@ -24,12 +24,20 @@ namespace Bar_LES_UTN
         StringBuilder pedidosHastaAhora = new StringBuilder();
         Dictionary<int, int> pedidosHasta = new Dictionary<int, int>();
 
+/// <summary>
+/// Constructor privado formulario AbrirCuenta
+/// </summary>
+
         private AbrirCuenta()
         {
             InitializeComponent();
 
         }
-
+        /// <summary>
+        /// Constructor de AbrirCuenta con parámetros
+        /// </summary>
+        /// <param name="nroMesa"></param>
+        /// <param name="barActual"></param>
         public AbrirCuenta(int nroMesa, Bar barActual) : this()
         {
             mesaCuenta = barActual.Mesas[nroMesa-1];
@@ -54,11 +62,11 @@ namespace Bar_LES_UTN
             txtCantComidas.Enabled = false;
         }
 
-        private void AbrirCuenta_Load(object sender, EventArgs e)
-        {
-            
-        }
-
+        /// <summary>
+        /// Manejador de boton para agregar el pedido y nombre de cliente a la cuenta
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             string nombreCliente;
@@ -141,11 +149,21 @@ namespace Bar_LES_UTN
 
         }
 
+        /// <summary>
+        /// Manejador de boton cancelar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Metodo para poner mayusculas en iniciales y eliminar espacios indeseados en nombre y apellidos ingresados por el usuario
+        /// </summary>
+        /// <param name="nombreAAcomodar"></param>
+        /// <returns></returns>
         public string AcomodarNombre(string nombreAAcomodar)
         {
             string nombreAcomodado = nombreAAcomodar;
@@ -181,13 +199,21 @@ namespace Bar_LES_UTN
             return nombreAcomodado;
         }
 
+        /// <summary>
+        /// Manejador cmbComidas que asigna texto segun la bebida seleccionada
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbComidas_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             cmbBebidas.Text = Enum.GetName(typeof(EBebidas), cmbBebidas.SelectedIndex);
-
         }
 
+        /// <summary>
+        /// Manejador boton AgregarPedido para agregar los pedidos y mostrarlos, luego asignarlos a la cuenta
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAgregarPedido_Click(object sender, EventArgs e)
         {
             Producto comida = new Comida();
@@ -355,6 +381,11 @@ namespace Bar_LES_UTN
 
         }
 
+        /// <summary>
+        /// Manejador chkComidas que activa o desactiva las etiquetas del formulario pertenecientes a "comidas" segun si esta chequeado o no
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chkComidas_CheckedChanged(object sender, EventArgs e)
         {
             if (chkComidas.Checked == true)
@@ -372,6 +403,11 @@ namespace Bar_LES_UTN
            
         }
 
+        /// <summary>
+        /// Manejador chkBebidas que activa o desactiva las etiquetas del formulario pertenecientes a "bebidas" segun si esta chequeado o no
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chkBebidas_CheckedChanged(object sender, EventArgs e)
         {
            
@@ -392,11 +428,21 @@ namespace Bar_LES_UTN
             }
         }
 
+        /// <summary>
+        /// Manejador cmbBebidas que puebla el .Text del cmb con la bebida relacionada con el indice clickeado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbBebidas_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmbBebidas.Text = Enum.GetName(typeof(EBebidas), cmbBebidas.SelectedIndex);
         }
 
+        /// <summary>
+        /// Manejador cmbTamano que puebla el .Text del cmb con la version de bebida relacionada con el indice clickeado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbTamano_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmbTamano.Text = Enum.GetName(typeof(EVersionBebida), cmbTamano.SelectedIndex);

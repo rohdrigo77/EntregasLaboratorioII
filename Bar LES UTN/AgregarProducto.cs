@@ -15,6 +15,11 @@ namespace Bar_LES_UTN
     {
         List<Producto> stock;
         StringBuilder ingredientesTotales;
+
+        /// <summary>
+        /// Constructor de AgregarProducto que recibe una lista de productos que sería el inventario del bar
+        /// </summary>
+        /// <param name="inventario"></param>
         public AgregarProducto(List<Producto> inventario)
         {
             InitializeComponent();
@@ -24,11 +29,21 @@ namespace Bar_LES_UTN
             cmbFormato.DataSource = Enum.GetValues(typeof(EVersionBebida));
         }
 
+        /// <summary>
+        /// Manejador de cmbAlcohol para indicar si la bebida tiene alcohol o no
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbAlcohol_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbFormato_SelectedIndexChanged(object sender, EventArgs e)
         {
 
