@@ -64,15 +64,23 @@ namespace Bar_LES_UTN
 
             }
 
+        /// <summary>
+        /// Manejador btnCancelar que cierra el formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        /// <summary>
+        /// Manejador cmbUsuario que modifica los textos 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbUsuario_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
-
             txtDNI.Text = (barSinLoguear.Empleados[cmbUsuario.SelectedIndex]).Dni.ToString();
             
             switch ((barSinLoguear.Empleados[cmbUsuario.SelectedIndex]).Dni)

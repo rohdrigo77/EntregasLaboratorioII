@@ -16,6 +16,7 @@ namespace Bar_LES_UTN
         Empleado empleadoLogueado;
         Mesa mesaSeleccionada;
         AbrirCuenta abrirCuenta;
+        Lista_Empleados empleados;
         Stock stock;
         Dictionary<int, Button> botones;
         Dictionary<int, bool> disponibilidadMesas;
@@ -23,15 +24,24 @@ namespace Bar_LES_UTN
         EventArgs argsMesaClick;
         bool cuentaCerrada=false;
 
+        /// <summary>
+        /// 
+        /// </summary>
         private VistaPrincipal()
         {
             InitializeComponent();
             botones = new Dictionary<int, Button>();
             disponibilidadMesas = new Dictionary<int, bool>();
             btnCobrarYLiberarMesa.Enabled = false;
-            
+            btnEmpleados.Enabled = false;
+
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="empleadoActual"></param>
+        /// <param name="barLogueado"></param>
         public VistaPrincipal(Empleado empleadoActual, Bar barLogueado)
         : this()
         {
@@ -42,22 +52,28 @@ namespace Bar_LES_UTN
             CargarMesas();
             ObtenerEstadoMesas();
             
-
             if (empleadoLogueado.Permisos == EPermisos.Administrador)
             {
                 lblEmpleadoAdmin.Visible = true;
                 this.BackColor = Color.Yellow;
-
+                btnEmpleados.Enabled = true;
             }
-
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void VistaPrincipal_Load(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void CargarMesas()
         {
 
@@ -84,8 +100,9 @@ namespace Bar_LES_UTN
 
         }
 
-
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void ObtenerEstadoMesas()
         {
             disponibilidadMesas.Clear();
@@ -109,12 +126,20 @@ namespace Bar_LES_UTN
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="info"></param>
         private void InfoMesa(string info)
-        {
-
+        { 
             rTxtMesas.Text = info;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMesaClick(object sender, EventArgs e)
         {
             argsMesaClick = e;
@@ -128,6 +153,10 @@ namespace Bar_LES_UTN
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="click"></param>
         private void VerificarBotonYMesa(object click)
         {
             Button auxBtn = (Button)click;
@@ -135,6 +164,10 @@ namespace Bar_LES_UTN
             VerificarBoton(auxBtn);            
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="boton"></param>
         private void VerificarBoton(Button boton)
         {
             ObtenerEstadoMesas();
@@ -152,6 +185,9 @@ namespace Bar_LES_UTN
             VerificarMesa();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void VerificarMesa()
         {
 
@@ -177,11 +213,9 @@ namespace Bar_LES_UTN
 
         }
 
-        private void btn_salir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void CobrarMesa()
         {
             StringBuilder mensaje = new StringBuilder();
@@ -200,36 +234,52 @@ namespace Bar_LES_UTN
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCobrarYLiberarMesa_Click(object sender, EventArgs e)
         {
             LiberarMesa();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void LiberarMesa()
         {
             if (cuentaCerrada == false)
             {
 
-
-                    CobrarMesa();
-                    mesaSeleccionada.MesaOcupada = false;               
-                    ObtenerEstadoMesas();
-                    InfoMesa(lesUTN.MostrarInformacionMesa(mesaSeleccionada.NumeroMesa)); 
-                    btnCobrarYLiberarMesa.Enabled = false;
+                CobrarMesa();
+                mesaSeleccionada.MesaOcupada = false;               
+                ObtenerEstadoMesas();
+                InfoMesa(lesUTN.MostrarInformacionMesa(mesaSeleccionada.NumeroMesa)); 
+                btnCobrarYLiberarMesa.Enabled = false;
 
             }
 
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStock_Click(object sender, EventArgs e)
         {
             stock = new Stock(lesUTN.Inventario ,empleadoLogueado.Permisos);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEmpleados_Click(object sender, EventArgs e)
-        {
-
+        { 
+            empleados = new Lista_Empleados(lesUTN.Empleados);
         }
 
     }
